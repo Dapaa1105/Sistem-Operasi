@@ -335,7 +335,8 @@ Kernel Driver in Use: e1000
 Tentukan device root filesystem dengan findmnt /. Lalu cocokkan dengan lsblk -f dan tuliskan tipe filesystem serta UUID-nya.
 >Jawaban :  
 Device root filesystem: /dev/sda2
-Tipe file
+Mount point: /
+Tipe filesystem: ext4
 UUID: 3fd833a5-8c55-4efb-9863-08b9980471c8
 
 ## Latihan 2.C
@@ -364,4 +365,4 @@ Jalankan sleep 600 &. Temukan PID-nya dengan ps. Hentikan dengan SIGTERM. Jelask
 Gunakan systemctl –failed. Jika tidak ada yang gagal, pilih satu service aktif (misal ssh) dan tampilkan status serta 30 baris log terakhirnya.
 >Jawaban :  
 ssh  
-![alt text](Image/kodelatihan2g(ssh).png)
+![alt text](Image/kodelatihan2g.png)
