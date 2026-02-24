@@ -327,17 +327,17 @@ Port 53 digunakan untuk layanan DNS (Domain Name System). Service systemd-resolv
 ## Latihan 2.A
 Jalankan lspci -nnk. Pilih 1 perangkat PCI dan tuliskan: nama perangkat, ID vendor:device, dan kernel driver in use.
 >Jawaban :  
-Nama Perangkat: Intel Corporation 82540EM Gigabit Ethernet Controller
-Vendor:Device ID: 8086:100e
-Kernel Driver in Use: e1000
+>Nama Perangkat: Intel Corporation 82540EM Gigabit Ethernet Controller
+>Vendor:Device ID: 8086:100e
+>Kernel Driver in Use: e1000
 
 ## Latihan 2.B
 Tentukan device root filesystem dengan findmnt /. Lalu cocokkan dengan lsblk -f dan tuliskan tipe filesystem serta UUID-nya.
 >Jawaban :  
-Device root filesystem: /dev/sda2
-Mount point: /
-Tipe filesystem: ext4
-UUID: 3fd833a5-8c55-4efb-9863-08b9980471c8
+>Device root filesystem: /dev/sda2
+>Mount point: /
+>Tipe filesystem: ext4
+>UUID: 3fd833a5-8c55-4efb-9863-08b9980471c8
 
 ## Latihan 2.C
 Buat file server.log berisi minimal 10 baris dengan variasi kata: INFO, WARN, ERROR. Gunakan grep untuk menampilkan hanya baris ERROR.
