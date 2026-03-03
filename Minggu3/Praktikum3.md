@@ -43,7 +43,7 @@ Waktu: Tue Mar  3 02:52:28 PM UTC 2026
 ----------------------------------------
 Hasil disimpan di: large-logs.txt
 Error disimpan di: error.log
-
+```
 
 ## Latihan 3.2
 
@@ -99,7 +99,7 @@ uucp
 uuidd
 www-data
 dafanr11@Ubuntu-Server-New:~$
-
+```
 
 ## Latihan 3.3
 
