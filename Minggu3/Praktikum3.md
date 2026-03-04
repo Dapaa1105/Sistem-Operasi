@@ -332,22 +332,13 @@ Implementasikan script backup yang:
 
 Kode :  
 ```bash
-tar -cvf backup.tar praktikum-os 2> backup-error.log | while read line; do echo "$(date '+%F %T') $line"; done | tee backup-success.log
+tar -cvf backup.tar Sistem-Operasi 2> backup-error.log | while read line; do echo "$(date '+%F %T') $line"; done | tee backup-success.log
 ```
 Output :  
 ```bash
-2026-03-01 03:54:41 praktikum-os/
-2026-03-01 03:54:41 praktikum-os/week03/
-2026-03-01 03:54:41 praktikum-os/week03/backup-error.log
-2026-03-01 03:54:41 praktikum-os/week03/backup-success.l
-2026-03-01 03:54:41 praktikum-os/week03/backup-success.log
-2026-03-01 03:54:41 praktikum-os/week03/backup.tar
-2026-03-01 03:54:41 praktikum-os/week02/
-2026-03-01 03:54:41 praktikum-os/week02/server.log
-2026-03-01 03:54:41 praktikum-os/week02/data.log
-2026-03-01 03:54:41 praktikum-os/week02/server1.log
-2026-03-01 03:54:41 praktikum-os/week02/config.txt
-2026-03-01 03:54:41 praktikum-os/week02/server1.log.bak
-2026-03-01 03:54:41 praktikum-os/week02/server.log.bak
-2026-03-01 03:54:41 praktikum-os/week02/notes.txt
+dafanr11@Ubuntu-Server-New:~$ tar -cvf backup.tar Sistem-Operasi 2> backup-error.log | while read line; do echo "$(date '+%F %T') $line"; done | tee backup-success.log
+2026-03-04 03:46:24 Sistem-Operasi/
+2026-03-04 03:46:24 Sistem-Operasi/Minggu1/
+2026-03-04 03:46:24 Sistem-Operasi/Minggu2/
+dafanr11@Ubuntu-Server-New:~$
 ```
