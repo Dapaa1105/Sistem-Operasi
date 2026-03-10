@@ -29,18 +29,18 @@ Jawaban :
     * rmdir (Remove directory) : Perintah untuk menghapus direktori yang masih kosong.
 
 2. Perintah manipulasi file : cp, mv, rm (beserta format)
-    * cp (copy) : Digunakan untuk menyalin file atau direktori.
-    Format : cp [sumber] [tujuan]
-    Contoh : cp file1.txt file2.txt
+    * cp (copy) : Digunakan untuk menyalin file atau direktori.  
+    Format : cp [sumber] [tujuan]  
+    Contoh : cp file1.txt file2.txt  
 
-    * mv (move) : Digunakan untuk memindahkan file/direktori atau mengganti nama file.
-    Format : mv [sumber] [tujuan]
-    Contoh : mv file1.txt /home/user/
+    * mv (move) : Digunakan untuk memindahkan file/direktori atau mengganti nama file.  
+    Format : mv [sumber] [tujuan]  
+    Contoh : mv file1.txt /home/user/  
 
     * rm (remove) : Digunakan untuk menghapus file atau direktori.
-    Format : rm [nama_file] 
-    Contoh : rm file1.txt
-    Untuk menghapus direktori beserta isinya: rm -r nama_direktori
+    Format : rm [nama_file]   
+    Contoh : rm file1.txt  
+    Untuk menghapus direktori beserta isinya: rm -r nama_direktori  
 
 3. Perbedaan hard link dan soft link (symbolic link)  
 
@@ -69,7 +69,7 @@ Jawaban :
 Contoh : file nama_file
 
 * find : Digunakan untuk mencari file atau direktori berdasarkan nama, ukuran, tipe, dll dalam suatu direktori.
-Contoh : find /home -name "*.txt" mencari semua file berekstensi .txt di /home.
+Contoh : find /home -name file.txt
 
 * which : Menampilkan lokasi absolut dari suatu perintah yang dieksekusi (berdasarkan PATH).  
 Contoh: which ls akan menampilkan /bin/ls.
