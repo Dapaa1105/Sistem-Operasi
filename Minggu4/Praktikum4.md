@@ -65,20 +65,20 @@ Jawaban :
     * Bisa berada di filesystem berbeda
 
 4. Maksud perintah: file, find, which, locate, grep
-* file : Digunakan untuk mengetahui tipe atau jenis suatu file.
-Contoh : file nama_file
+* file : Digunakan untuk mengetahui tipe atau jenis suatu file.  
+Contoh : file nama_file  
 
-* find : Digunakan untuk mencari file atau direktori berdasarkan nama, ukuran, tipe, dll dalam suatu direktori.
-Contoh : find /home -name file.txt
+* find : Digunakan untuk mencari file atau direktori berdasarkan nama, ukuran, tipe, dll dalam suatu direktori.  
+Contoh : find /home -name file.txt  
 
-* which : Menampilkan lokasi absolut dari suatu perintah yang dieksekusi (berdasarkan PATH).  
-Contoh: which ls akan menampilkan /bin/ls.
+* which : Digunakan untuk mengetahui lokasi file executable dari suatu perintah.  
+Contoh : which python
 
-* locate : Mencari file dengan cepat menggunakan database indeks (diperbarui dengan updatedb).  
-Contoh: locate passwd akan menampilkan semua file bernama passwd di sistem.
+* locate : Digunakan untuk mencari file dengan cepat menggunakan database yang sudah diindeks.  
+Contoh : locate file.txt.
 
-* grep (Global Regular Expression Print) : Mencari teks dalam file berdasarkan pola (regular expression).  
-Contoh: grep "error" log.txt akan menampilkan baris-baris yang mengandung kata "error".
+* grep (Global Regular Expression Print) : Digunakan untuk mencari teks atau pola tertentu dalam file.  
+Contoh : grep "kata" nama_file
 
 
 
@@ -107,118 +107,89 @@ $ pwd
 
 output  
 ```bash
-root@ubuntuser:/home/yudhis# mkdir -p ~/praktikum-os/week04
-root@ubuntuser:/home/yudhis# cd ~/praktikum-os/week04
-root@ubuntuser:~/praktikum-os/week04# pwd
-/root/praktikum-os/week04
-root@ubuntuser:~/praktikum-os/week04# cd
-root@ubuntuser:~# pwd
-/root
-root@ubuntuser:~# ls -al
-total 108
-drwx------  8 root root  4096 Mar  7 05:58 .
-drwxr-xr-x 27 root root  4096 Mar  7 06:06 ..
-drwxr-xr-x  4 root root  4096 Mar  7 05:54 A
--rw-r--r--  1 root root     0 Mar  1 03:54 backup-error.log
--rw-r--r--  1 root root   704 Mar  1 03:53 backup-success.l
--rw-r--r--  1 root root   704 Mar  1 03:54 backup-success.log
--rw-r--r--  1 root root 30720 Mar  1 03:54 backup.tar
--rw-------  1 root root 13578 Mar  7 06:17 .bash_history
--rw-r--r--  1 root root  3106 Apr 22  2024 .bashrc
-drwxr-xr-x  2 root root  4096 Mar  7 05:54 C
-drwx------  5 root root  4096 Feb 21 15:32 .config
--rw-------  1 root root    20 Feb 28 15:45 .lesshst
-drwxr-xr-x  3 root root  4096 Feb 28 15:08 .local
-drwxr-xr-x  5 root root  4096 Mar  7 06:17 praktikum-os
--rw-r--r--  1 root root   161 Apr 22  2024 .profile
-drwx------  2 root root  4096 Feb 28 14:55 .ssh
--r-xr-xr-x  1 root root  7049 Feb 18 12:32 vboxpostinstall.sh
-root@ubuntuser:~# cd .
-root@ubuntuser:~# pwd
-/root
-root@ubuntuser:~# cd ..
-root@ubuntuser:/# pwd
+dafanr11@Ubuntu-Server-New:~$ mkdir -p ~/Sistem-Operasi/Minggu4
+dafanr11@Ubuntu-Server-New:~$ cd ~/Sistem-Operasi/Minggu4
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu4$ pwd
+/home/dafanr11/Sistem-Operasi/Minggu4
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu4$ cd
+dafanr11@Ubuntu-Server-New:~$ pwd
+/home/dafanr11
+dafanr11@Ubuntu-Server-New:~$ ls -al
+total 96
+drwxr-x--- 6 dafanr11 dafanr11  4096 Mar  4 03:37 .
+drwxr-xr-x 3 root     root      4096 Mar  3 14:12 ..
+-rw-rw-r-- 1 dafanr11 dafanr11 16433 Mar  3 14:58 all-config-files.txt
+-rw-rw-r-- 1 dafanr11 dafanr11     0 Mar  4 03:46 backup-error.log
+-rw-rw-r-- 1 dafanr11 dafanr11   124 Mar  4 03:46 backup-success.log
+-rw-rw-r-- 1 dafanr11 dafanr11 10240 Mar  4 03:46 backup.tar
+-rw------- 1 dafanr11 dafanr11  1860 Mar  4 03:49 .bash_history
+-rw-r--r-- 1 dafanr11 dafanr11   220 Mar 31  2024 .bash_logout
+-rw-r--r-- 1 dafanr11 dafanr11  3771 Mar 31  2024 .bashrc
+drwx------ 2 dafanr11 dafanr11  4096 Mar  3 14:14 .cache
+drwxrwxr-x 4 dafanr11 dafanr11  4096 Mar  3 14:56 .config
+-rw-rw-r-- 1 dafanr11 dafanr11   158 Mar  3 14:52 error.log
+-rw-rw-r-- 1 dafanr11 dafanr11  1249 Mar  3 14:52 large-logs.txt
+-rw-r--r-- 1 dafanr11 dafanr11   807 Mar 31  2024 .profile
+drwxrwxr-x 5 dafanr11 dafanr11  4096 Mar 10 13:41 Sistem-Operasi
+-rw-rw-r-- 1 dafanr11 dafanr11   251 Mar  3 14:53 sorted-users.txt
+drwx------ 2 dafanr11 dafanr11  4096 Mar  3 14:13 .ssh
+-rw-r--r-- 1 dafanr11 dafanr11     0 Mar  3 14:14 .sudo_as_admin_successful
+-rw-rw-r-- 1 dafanr11 dafanr11  5789 Mar  3 14:57 system-monitor-20260303-145605.log
+dafanr11@Ubuntu-Server-New:~$ cd .
+dafanr11@Ubuntu-Server-New:~$ pwd
+/home/dafanr11
+dafanr11@Ubuntu-Server-New:~$ cd ..
+dafanr11@Ubuntu-Server-New:/home$ pwd
+/home
+dafanr11@Ubuntu-Server-New:/home$ ls -al
+total 12
+drwxr-xr-x  3 root     root     4096 Mar  3 14:12 .
+drwxr-xr-x 24 root     root     4096 Mar  4 03:42 ..
+drwxr-x---  6 dafanr11 dafanr11 4096 Mar  4 03:37 dafanr11
+dafanr11@Ubuntu-Server-New:/home$ cd ..
+dafanr11@Ubuntu-Server-New:/$ pwd
 /
-root@ubuntuser:/# ls -al
-total 104
-drwxr-xr-x  27 root root  4096 Mar  7 06:06 .
-drwxr-xr-x  27 root root  4096 Mar  7 06:06 ..
-drwxr-xr-x   4 root root  4096 Mar  7 06:06 A
-drwxr-xr-x   3 root root  4096 Mar  7 06:06 B
-drwxr-xr-x   2 root root  4096 Mar  1 03:14 backup
+dafanr11@Ubuntu-Server-New:/$ ls -al
+total 92
+drwxr-xr-x  24 root root  4096 Mar  4 03:42 .
+drwxr-xr-x  24 root root  4096 Mar  4 03:42 ..
 lrwxrwxrwx   1 root root     7 Apr 22  2024 bin -> usr/bin
 drwxr-xr-x   2 root root  4096 Feb 26  2024 bin.usr-is-merged
-drwxr-xr-x   3 root root  4096 Feb 21 15:16 boot
-drwxr-xr-x   2 root root  4096 Mar  7 06:06 C
-dr-xr-xr-x   2 root root  4096 Feb 18 12:25 cdrom
-drwxr-xr-x  19 root root  4040 Mar  7 05:49 dev
-drwxr-xr-x 112 root root  4096 Feb 28 15:47 etc
-drwxr-xr-x   3 root root  4096 Feb 18 12:31 home
+drwxr-xr-x   3 root root  4096 Mar  3 14:18 boot
+dr-xr-xr-x   2 root root  4096 Mar  3 13:51 cdrom
+drwxr-xr-x  19 root root  4040 Mar 10 13:24 dev
+drwxr-xr-x 112 root root  4096 Mar  3 14:32 etc
+drwxr-xr-x   3 root root  4096 Mar  3 14:12 home
 lrwxrwxrwx   1 root root     7 Apr 22  2024 lib -> usr/lib
 lrwxrwxrwx   1 root root     9 Apr 22  2024 lib64 -> usr/lib64
 drwxr-xr-x   2 root root  4096 Feb 26  2024 lib.usr-is-merged
-drwx------   2 root root 16384 Feb 18 12:26 lost+found
+drwx------   2 root root 16384 Mar  3 13:52 lost+found
 drwxr-xr-x   2 root root  4096 Aug  5  2025 media
 drwxr-xr-x   2 root root  4096 Aug  5  2025 mnt
 drwxr-xr-x   2 root root  4096 Aug  5  2025 opt
-dr-xr-xr-x 199 root root     0 Mar  7 05:49 proc
-drwx------   8 root root  4096 Mar  7 05:58 root
-drwxr-xr-x  28 root root   840 Mar  7 05:56 run
+dr-xr-xr-x 202 root root     0 Mar 10 13:24 proc
+drwx------   3 root root  4096 Mar  3 14:34 root
+drwxr-xr-x  28 root root   860 Mar 10 13:42 run
 lrwxrwxrwx   1 root root     8 Apr 22  2024 sbin -> usr/sbin
 drwxr-xr-x   2 root root  4096 Dec 11  2024 sbin.usr-is-merged
-drwxr-xr-x   2 root root  4096 Feb 18 12:31 snap
+drwxr-xr-x   2 root root  4096 Mar  4 03:42 Sistem-Operasi
+drwxr-xr-x   2 root root  4096 Mar  3 14:12 snap
 drwxr-xr-x   2 root root  4096 Aug  5  2025 srv
-dr-xr-xr-x  13 root root     0 Mar  7 05:49 sys
-drwxrwxrwt  13 root root  4096 Mar  7 05:56 tmp
+dr-xr-xr-x  13 root root     0 Mar 10 13:24 sys
+drwxrwxrwt  14 root root  4096 Mar 10 13:35 tmp
 drwxr-xr-x  12 root root  4096 Aug  5  2025 usr
-drwxr-xr-x  13 root root  4096 Feb 18 12:31 var
-root@ubuntuser:/# cd ..
-root@ubuntuser:/# pwd
-/
-root@ubuntuser:/# ls -al
-total 104
-drwxr-xr-x  27 root root  4096 Mar  7 06:06 .
-drwxr-xr-x  27 root root  4096 Mar  7 06:06 ..
-drwxr-xr-x   4 root root  4096 Mar  7 06:06 A
-drwxr-xr-x   3 root root  4096 Mar  7 06:06 B
-drwxr-xr-x   2 root root  4096 Mar  1 03:14 backup
-lrwxrwxrwx   1 root root     7 Apr 22  2024 bin -> usr/bin
-drwxr-xr-x   2 root root  4096 Feb 26  2024 bin.usr-is-merged
-drwxr-xr-x   3 root root  4096 Feb 21 15:16 boot
-drwxr-xr-x   2 root root  4096 Mar  7 06:06 C
-dr-xr-xr-x   2 root root  4096 Feb 18 12:25 cdrom
-drwxr-xr-x  19 root root  4040 Mar  7 05:49 dev
-drwxr-xr-x 112 root root  4096 Feb 28 15:47 etc
-drwxr-xr-x   3 root root  4096 Feb 18 12:31 home
-lrwxrwxrwx   1 root root     7 Apr 22  2024 lib -> usr/lib
-lrwxrwxrwx   1 root root     9 Apr 22  2024 lib64 -> usr/lib64
-drwxr-xr-x   2 root root  4096 Feb 26  2024 lib.usr-is-merged
-drwx------   2 root root 16384 Feb 18 12:26 lost+found
-drwxr-xr-x   2 root root  4096 Aug  5  2025 media
-drwxr-xr-x   2 root root  4096 Aug  5  2025 mnt
-drwxr-xr-x   2 root root  4096 Aug  5  2025 opt
-dr-xr-xr-x 197 root root     0 Mar  7 05:49 proc
-drwx------   8 root root  4096 Mar  7 05:58 root
-drwxr-xr-x  28 root root   840 Mar  7 05:56 run
-lrwxrwxrwx   1 root root     8 Apr 22  2024 sbin -> usr/sbin
-drwxr-xr-x   2 root root  4096 Dec 11  2024 sbin.usr-is-merged
-drwxr-xr-x   2 root root  4096 Feb 18 12:31 snap
-drwxr-xr-x   2 root root  4096 Aug  5  2025 srv
-dr-xr-xr-x  13 root root     0 Mar  7 06:24 sys
-drwxrwxrwt  13 root root  4096 Mar  7 05:56 tmp
-drwxr-xr-x  12 root root  4096 Aug  5  2025 usr
-drwxr-xr-x  13 root root  4096 Feb 18 12:31 var
-root@ubuntuser:/# cd /etc
-root@ubuntuser:/etc# ls -al | more
+drwxr-xr-x  13 root root  4096 Mar  3 14:12 var
+dafanr11@Ubuntu-Server-New:/$ cd /etc
+dafanr11@Ubuntu-Server-New:/etc$ ls -al | more
 total 960
-drwxr-xr-x 112 root root       4096 Feb 28 15:47 .
-drwxr-xr-x  27 root root       4096 Mar  7 06:06 ..
+drwxr-xr-x 112 root root       4096 Mar  3 14:32 .
+drwxr-xr-x  24 root root       4096 Mar  4 03:42 ..
 -rw-r--r--   1 root root       3444 Jul  5  2023 adduser.conf
-drwxr-xr-x   2 root root       4096 Feb 21 15:21 alternatives
-drwxr-xr-x   2 root root       4096 Feb 21 15:16 apparmor
-drwxr-xr-x   9 root root      12288 Feb 21 15:16 apparmor.d
+drwxr-xr-x   2 root root       4096 Mar  3 14:20 alternatives
+drwxr-xr-x   2 root root       4096 Mar  3 14:18 apparmor
+drwxr-xr-x   9 root root      12288 Mar  3 14:18 apparmor.d
 drwxr-xr-x   3 root root       4096 Aug  5  2025 apport
-drwxr-xr-x   9 root root       4096 Feb 18 12:26 apt
+drwxr-xr-x   9 root root       4096 Mar  3 13:52 apt
 -rw-r--r--   1 root root       2319 Mar 31  2024 bash.bashrc
 -rw-r--r--   1 root root         45 Aug  5  2025 bash_completion
 drwxr-xr-x   2 root root       4096 Aug  5  2025 bash_completion.d
@@ -227,12 +198,12 @@ drwxr-xr-x   2 root root       4096 Jul  2  2025 binfmt.d
 drwxr-xr-x   2 root root       4096 Aug  5  2025 byobu
 drwxr-xr-x   3 root root       4096 Aug  5  2025 ca-certificates
 -rw-r--r--   1 root root       6288 Aug  5  2025 ca-certificates.conf
-drwxr-xr-x   5 root root       4096 Feb 21 15:16 cloud
-drwxr-xr-x   2 root root       4096 Feb 18 12:27 console-setup
+drwxr-xr-x   5 root root       4096 Mar  3 14:18 cloud
+drwxr-xr-x   2 root root       4096 Mar  3 13:53 console-setup
 drwx------   2 root root       4096 Jul  2  2025 credstore
 drwx------   2 root root       4096 Jul  2  2025 credstore.encrypted
 drwxr-xr-x   2 root root       4096 Aug  5  2025 cron.d
-drwxr-xr-x   2 root root       4096 Feb 18 12:31 cron.daily
+drwxr-xr-x   2 root root       4096 Mar  3 14:12 cron.daily
 drwxr-xr-x   2 root root       4096 Aug  5  2025 cron.hourly
 drwxr-xr-x   2 root root       4096 Aug  5  2025 cron.monthly
 -rw-r--r--   1 root root       1136 Aug  5  2025 crontab
@@ -243,59 +214,55 @@ drwxr-xr-x   2 root root       4096 Aug  5  2025 cryptsetup-initramfs
 drwxr-xr-x   4 root root       4096 Aug  5  2025 dbus-1
 -rw-r--r--   1 root root       2967 Apr 12  2024 debconf.conf
 -rw-r--r--   1 root root         11 Apr 22  2024 debian_version
-drwxr-xr-x   3 root root       4096 Feb 28 15:23 default
+drwxr-xr-x   3 root root       4096 Mar  3 14:32 default
 -rw-r--r--   1 root root       1706 Jul  5  2023 deluser.conf
 drwxr-xr-x   2 root root       4096 Aug  5  2025 depmod.d
 drwxr-xr-x   3 root root       4096 Aug  5  2025 dhcp
 -rw-r--r--   1 root root       1429 May  7  2024 dhcpcd.conf
-drwxr-xr-x   4 root root       4096 Feb 18 12:31 dpkg
+drwxr-xr-x   4 root root       4096 Mar  3 14:12 dpkg
 -rw-r--r--   1 root root        685 Apr  8  2024 e2scrub.conf
 -rw-r--r--   1 root root        106 Aug  5  2025 environment
 -rw-r--r--   1 root root       1853 Oct 17  2022 ethertypes
-drwxr-xr-x   4 root root       4096 Feb 18 12:30 fonts
--rw-r--r--   1 root root        446 Feb 18 12:30 fstab
+drwxr-xr-x   4 root root       4096 Mar  3 14:11 fonts
+-rw-r--r--   1 root root        446 Mar  3 14:11 fstab
 -rw-r--r--   1 root root        694 Apr  8  2024 fuse.conf
-drwxr-xr-x   4 root root       4096 Feb 21 15:16 fwupd
+drwxr-xr-x   4 root root       4096 Mar  3 14:18 fwupd
 -rw-r--r--   1 root root       2584 Jan 31  2024 gai.conf
-drwxr-xr-x   4 root root       4096 Feb 21 15:21 ghostscript
-drwxr-xr-x   2 root root       4096 Feb 18 12:31 gnutls
+drwxr-xr-x   4 root root       4096 Mar  3 14:20 ghostscript
+drwxr-xr-x   2 root root       4096 Mar  3 14:12 gnutls
 drwxr-xr-x   2 root root       4096 Aug  5  2025 groff
--rw-r--r--   1 root root        791 Feb 28 14:41 group
--rw-r--r--   1 root root        777 Feb 18 12:31 group-
-drwxr-xr-x   2 root root       4096 Feb 21 15:16 grub.d
--rw-r-----   1 root shadow      665 Feb 28 14:41 gshadow
--rw-r-----   1 root shadow      654 Feb 18 12:31 gshadow-
+-rw-r--r--   1 root root        781 Mar  3 14:12 group
+-rw-r--r--   1 root root        773 Mar  3 14:12 group-
+drwxr-xr-x   2 root root       4096 Mar  3 14:18 grub.d
+-rw-r-----   1 root shadow      658 Mar  3 14:12 gshadow
+-rw-r-----   1 root shadow      650 Mar  3 14:12 gshadow-
 drwxr-xr-x   3 root root       4096 Aug  5  2025 gss
 -rw-r--r--   1 root root       4436 Aug  5  2025 hdparm.conf
 -rw-r--r--   1 root root         92 Apr 22  2024 host.conf
--rw-r--r--   1 root root         10 Feb 18 12:31 hostname
+-rw-r--r--   1 root root         18 Mar  3 14:12 hostname
 -rw-r--r--   1 root root          0 Aug  5  2025 hosts
--rw-r--r--   1 root root        411 Feb 21 08:49 hosts.allow
--rw-r--r--   1 root root        711 Feb 21 08:49 hosts.deny
-drwxr-xr-x   2 root root       4096 Feb 21 15:21 ImageMagick-6
-drwxr-xr-x   2 root root       4096 Feb 28 15:23 init.d
-drwxr-xr-x   5 root root       4096 Feb 21 15:16 initramfs-tools
+-rw-r--r--   1 root root        411 Mar  3 14:32 hosts.allow
+-rw-r--r--   1 root root        711 Mar  3 14:32 hosts.deny
+drwxr-xr-x   2 root root       4096 Mar  3 14:20 ImageMagick-6
+drwxr-xr-x   2 root root       4096 Mar  3 14:32 init.d
+drwxr-xr-x   5 root root       4096 Mar  3 14:18 initramfs-tools
 -rw-r--r--   1 root root       1875 Mar 31  2024 inputrc
 drwxr-xr-x   4 root root       4096 Aug  5  2025 iproute2
 drwxr-xr-x   2 root root       4096 Aug  5  2025 iscsi
 -rw-r--r--   1 root root         26 Feb  6 07:23 issue
 -rw-r--r--   1 root root         19 Feb  6 07:23 issue.net
-drwxr-xr-x   6 root root       4096 Feb 18 12:30 kernel
+drwxr-xr-x   6 root root       4096 Mar  3 14:11 kernel
 drwxrwxr-x   2 root landscape  4096 Aug  5  2025 landscape
-drwxr-xr-x   2 root root       4096 Feb 21 15:16 ldap
--rw-r--r--   1 root root      32431 Feb 28 15:23 ld.so.cache
+drwxr-xr-x   2 root root       4096 Mar  3 14:18 ldap
+-rw-r--r--   1 root root      32431 Mar  3 14:32 ld.so.cache
 -rw-r--r--   1 root root         34 Aug  2  2022 ld.so.conf
-drwxr-xr-x   2 root root       4096 Feb 18 12:30 ld.so.conf.d
+drwxr-xr-x   2 root root       4096 Mar  3 14:11 ld.so.conf.d
 -rw-r--r--   1 root root        267 Apr 22  2024 legal
 -rw-r--r--   1 root root        191 Mar 31  2024 libaudit.conf
 drwxr-xr-x   3 root root       4096 Aug  5  2025 libblockdev
 drwxr-xr-x   2 root root       4096 Aug  5  2025 libibverbs.d
 drwxr-xr-x   2 root root       4096 Aug  5  2025 libnl-3
-drwxr-xr-x   2 root root       4096 Apr  8  2024 libpaper.d
--rw-r--r--   1 root root       2996 Aug  5  2025 locale.alias
--rw-r--r--   1 root root         17 Feb 18 12:31 locale.conf
---More--
-root@ubuntuser:/etc# cat passwd
+dafanr11@Ubuntu-Server-New:/etc$ cat passwd
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
 bin:x:2:2:bin:/bin:/usr/sbin/nologin
@@ -328,23 +295,23 @@ tss:x:106:108:TPM software stack,,,:/var/lib/tpm:/bin/false
 landscape:x:107:109::/var/lib/landscape:/usr/sbin/nologin
 fwupd-refresh:x:989:989:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
 usbmux:x:108:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
-yudhis:x:1000:1000:yudhis:/home/yudhis:/bin/bash
+dafanr11:x:1000:1000:dafanr11:/home/dafanr11:/bin/bash
 sshd:x:109:65534::/run/sshd:/usr/sbin/nologin
-root@ubuntuser:/etc# cd -
+dafanr11@Ubuntu-Server-New:/etc$ cd -
 /
-root@ubuntuser:/# pwd
+dafanr11@Ubuntu-Server-New:/$ pwd
 /
-root@ubuntuser:/#
+dafanr11@Ubuntu-Server-New:/$
 ```
 
 ### 2. Lanjutkan penelusuran pohon pada sistem file menggunakan cd, ls, pwd dan cat. Telusuri direktory /bin, /usr/bin, /sbin, /tmp dan /boot.
 
 /bin : 
 ```bash
-root@ubuntuser:/# cd /bin
-root@ubuntuser:/bin# pwd
+dafanr11@Ubuntu-Server-New:/$ cd /bin
+dafanr11@Ubuntu-Server-New:/bin$ pwd
 /bin
-root@ubuntuser:/bin# ls -l | head -15
+dafanr11@Ubuntu-Server-New:/bin$ ls -l | head -15
 total 132692
 -rwxr-xr-x 1 root root       55744 Jun 22  2025 [
 -rwxr-xr-x 1 root root       14640 Mar 31  2024 411toppm
@@ -360,14 +327,15 @@ lrwxrwxrwx 1 root root          29 Mar 31  2024 animate-im6 -> /etc/alternatives
 -rwxr-xr-x 1 root root       12556 Mar 31  2024 anytopnm
 -rwxr-xr-x 1 root root        2322 Apr 18  2024 apport-bug
 -rwxr-xr-x 1 root root       13625 Jul  8  2025 apport-cli
+dafanr11@Ubuntu-Server-New:/bin$
 ```
 
 /usr/bin : 
 ```bash
-root@ubuntuser:/bin# cd /usr/bin
-root@ubuntuser:/usr/bin# pwd
+dafanr11@Ubuntu-Server-New:/bin$ cd /usr/bin
+dafanr11@Ubuntu-Server-New:/usr/bin$ pwd
 /usr/bin
-root@ubuntuser:/usr/bin# ls -l | head -15
+dafanr11@Ubuntu-Server-New:/usr/bin$ ls -l | head -15
 total 132692
 -rwxr-xr-x 1 root root       55744 Jun 22  2025 [
 -rwxr-xr-x 1 root root       14640 Mar 31  2024 411toppm
@@ -383,15 +351,16 @@ lrwxrwxrwx 1 root root          29 Mar 31  2024 animate-im6 -> /etc/alternatives
 -rwxr-xr-x 1 root root       12556 Mar 31  2024 anytopnm
 -rwxr-xr-x 1 root root        2322 Apr 18  2024 apport-bug
 -rwxr-xr-x 1 root root       13625 Jul  8  2025 apport-cli
+dafanr11@Ubuntu-Server-New:/usr/bin$
 ```
 
 /sbin : 
 ```bash
-root@ubuntuser:/usr/bin# cd /sbin
-root@ubuntuser:/sbin# pwd
+dafanr11@Ubuntu-Server-New:/usr/bin$ cd /sbin
+dafanr11@Ubuntu-Server-New:/sbin$ pwd
 /sbin
-root@ubuntuser:/sbin# ls -l | head -15
-total 34544
+dafanr11@Ubuntu-Server-New:/sbin$ ls -l | head -15
+total 33140
 -rwxr-xr-x 1 root root     39680 Aug 15  2025 aa-load
 -rwxr-xr-x 1 root root      3225 Aug 15  2025 aa-remove-unknown
 -rwxr-xr-x 1 root root     40000 Aug 15  2025 aa-status
@@ -406,121 +375,111 @@ lrwxrwxrwx 1 root root         7 Jul  5  2023 addgroup -> adduser
 lrwxrwxrwx 1 root root         9 Aug 15  2025 apparmor_status -> aa-status
 -rwxr-xr-x 1 root root      2217 Jan  5 22:01 applygnupgdefaults
 -rwxr-xr-x 1 root root     36862 Apr 16  2024 argdist-bpfcc
+dafanr11@Ubuntu-Server-New:/sbin$
 ```
 
 /tmp : 
 ```bash
-root@ubuntuser:/sbin# cd /tmp
-root@ubuntuser:/tmp# pwd
+dafanr11@Ubuntu-Server-New:/sbin$ cd /tmp
+dafanr11@Ubuntu-Server-New:/tmp$ pwd
 /tmp
-root@ubuntuser:/tmp# ls -l | head -15
-total 28
-drwx------ 2 root root 4096 Mar  7 05:49 snap-private-tmp
-drwx------ 3 root root 4096 Mar  7 06:39 systemd-private-c09f65b6edf14c99b94ea1939424ba8a-fwupd.service-txTLcP
-drwx------ 3 root root 4096 Mar  7 05:49 systemd-private-c09f65b6edf14c99b94ea1939424ba8a-ModemManager.service-nK7Kw5
-drwx------ 3 root root 4096 Mar  7 05:49 systemd-private-c09f65b6edf14c99b94ea1939424ba8a-polkit.service-EovV02
-drwx------ 3 root root 4096 Mar  7 05:49 systemd-private-c09f65b6edf14c99b94ea1939424ba8a-systemd-logind.service-vmX4N8
-drwx------ 3 root root 4096 Mar  7 05:49 systemd-private-c09f65b6edf14c99b94ea1939424ba8a-systemd-resolved.service-gcwTbN
-drwx------ 3 root root 4096 Mar  7 05:56 systemd-private-c09f65b6edf14c99b94ea1939424ba8a-upower.service-imlDQi
-root@ubuntuser:/tmp# cat tempfile.txt
-cat: tempfile.txt: No such file or directory
+dafanr11@Ubuntu-Server-New:/tmp$ ls -l | head -15
+total 32
+drwx------ 2 root root 4096 Mar 10 13:24 snap-private-tmp
+drwx------ 3 root root 4096 Mar 10 13:35 systemd-private-9a8b283a04df44f388e00d09cbf4b196-fwupd.service-EII6QA
+drwx------ 3 root root 4096 Mar 10 13:24 systemd-private-9a8b283a04df44f388e00d09cbf4b196-ModemManager.service-Ed027v
+drwx------ 3 root root 4096 Mar 10 13:24 systemd-private-9a8b283a04df44f388e00d09cbf4b196-polkit.service-8w3HI7
+drwx------ 3 root root 4096 Mar 10 13:24 systemd-private-9a8b283a04df44f388e00d09cbf4b196-systemd-logind.service-lFT0NA
+drwx------ 3 root root 4096 Mar 10 13:24 systemd-private-9a8b283a04df44f388e00d09cbf4b196-systemd-resolved.service-ZtbqWJ
+drwx------ 3 root root 4096 Mar 10 13:24 systemd-private-9a8b283a04df44f388e00d09cbf4b196-systemd-timesyncd.service-Ooq1RD
+drwx------ 3 root root 4096 Mar 10 13:35 systemd-private-9a8b283a04df44f388e00d09cbf4b196-upower.service-sroBrt
+dafanr11@Ubuntu-Server-New:/tmp$
 ```
 
 /boot : 
 ```bash
-root@ubuntuser:/tmp# cd /boot
-root@ubuntuser:/boot# pwd
+dafanr11@Ubuntu-Server-New:/tmp$ cd /boot
+dafanr11@Ubuntu-Server-New:/boot$ pwd
 /boot
-root@ubuntuser:/boot# ls -l | head -15
-total 193576
--rw-r--r-- 1 root root   287599 Jan 13 13:56 config-6.8.0-100-generic
+dafanr11@Ubuntu-Server-New:/boot$ ls -l | head -15
+total 96776
 -rw-r--r-- 1 root root   287599 Feb  6 17:52 config-6.8.0-101-generic
-drwxr-xr-x 5 root root     4096 Mar  7 06:42 grub
-lrwxrwxrwx 1 root root       28 Mar  7 06:41 initrd.img -> initrd.img-6.8.0-101-generic
--rw-r--r-- 1 root root 74664848 Feb 21 15:16 initrd.img-6.8.0-100-generic
--rw-r--r-- 1 root root 74657887 Mar  7 06:42 initrd.img-6.8.0-101-generic
-lrwxrwxrwx 1 root root       28 Feb 18 12:30 initrd.img.old -> initrd.img-6.8.0-100-generic
--rw------- 1 root root  9120274 Jan 13 13:56 System.map-6.8.0-100-generic
+drwxr-xr-x 5 root root     4096 Mar  3 14:11 grub
+lrwxrwxrwx 1 root root       28 Mar  3 14:11 initrd.img -> initrd.img-6.8.0-101-generic
+-rw-r--r-- 1 root root 74646767 Mar  3 14:18 initrd.img-6.8.0-101-generic
+lrwxrwxrwx 1 root root       28 Mar  3 14:11 initrd.img.old -> initrd.img-6.8.0-101-generic
 -rw------- 1 root root  9120274 Feb  6 17:52 System.map-6.8.0-101-generic
-lrwxrwxrwx 1 root root       25 Mar  7 06:41 vmlinuz -> vmlinuz-6.8.0-101-generic
--rw------- 1 root root 15030664 Jan 13 14:42 vmlinuz-6.8.0-100-generic
+lrwxrwxrwx 1 root root       25 Mar  3 14:11 vmlinuz -> vmlinuz-6.8.0-101-generic
 -rw------- 1 root root 15030664 Feb  6 18:21 vmlinuz-6.8.0-101-generic
-lrwxrwxrwx 1 root root       25 Feb 18 12:30 vmlinuz.old -> vmlinuz-6.8.0-100-generic
-root@ubuntuser:/boot# cat config-5.15.0-69-generic | head -5
-cat: config-5.15.0-69-generic: No such file or directory
+lrwxrwxrwx 1 root root       25 Mar  3 14:11 vmlinuz.old -> vmlinuz-6.8.0-101-generic
+dafanr11@Ubuntu-Server-New:/boot$
 ```
 
 ### 3. Telusuri direktory /dev. Identifikasi perangkat yang tersedia. Identifikasi tty  (termninal) Anda (ketik who am i); siapa pemilih tty Anda (gunakan ls –l).
 
 Output
 ```bash
-root@ubuntuser:/boot# cd /dev
-root@ubuntuser:/dev# ls -l | head -15
+dafanr11@Ubuntu-Server-New:/boot$ cd /dev
+dafanr11@Ubuntu-Server-New:/dev$ ls -l | head -15
 total 0
-crw-r--r--  1 root   root     10, 235 Mar  7 05:49 autofs
-drwxr-xr-x  2 root   root         280 Mar  7 05:49 block
-drwxr-xr-x  2 root   root          80 Mar  7 05:49 bsg
-crw-rw----  1 root   disk     10, 234 Mar  7 05:49 btrfs-control
-drwxr-xr-x  3 root   root          60 Mar  7 05:49 bus
-lrwxrwxrwx  1 root   root           3 Mar  7 05:49 cdrom -> sr0
-drwxr-xr-x  2 root   root        3800 Mar  7 06:39 char
-crw-------  1 root   root      5,   1 Mar  7 05:49 console
-lrwxrwxrwx  1 root   root          11 Mar  7 05:49 core -> /proc/kcore
-drwxr-xr-x  5 root   root         100 Mar  7 05:49 cpu
-crw-------  1 root   root     10, 123 Mar  7 05:49 cpu_dma_latency
-crw-------  1 root   root     10, 203 Mar  7 05:49 cuse
-drwxr-xr-x  7 root   root         140 Mar  7 05:49 disk
-drwxr-xr-x  2 root   root          60 Mar  7 05:49 dma_heap
-root@ubuntuser:/dev# who am i
-yudhis   pts/2        2026-03-07 06:17 (10.0.2.2)
-root@ubuntuser:/dev# ls -l /dev/pts/2
-crw--w---- 1 root tty 136, 2 Mar  7 07:25 /dev/pts/2
-root@ubuntuser:/dev# ls -l /dev/pts/0
-crw--w---- 1 root tty 136, 0 Mar  7 05:50 /dev/pts/0
-root@ubuntuser:/dev#
+crw-r--r--  1 root     root     10, 235 Mar 10 13:24 autofs
+drwxr-xr-x  2 root     root         280 Mar 10 13:24 block
+drwxr-xr-x  2 root     root          80 Mar 10 13:24 bsg
+crw-rw----  1 root     disk     10, 234 Mar 10 13:24 btrfs-control
+drwxr-xr-x  3 root     root          60 Mar 10 13:24 bus
+lrwxrwxrwx  1 root     root           3 Mar 10 13:24 cdrom -> sr0
+drwxr-xr-x  2 root     root        3760 Mar 10 13:24 char
+crw-------  1 root     root      5,   1 Mar 10 13:24 console
+lrwxrwxrwx  1 root     root          11 Mar 10 13:24 core -> /proc/kcore
+drwxr-xr-x  6 root     root         120 Mar 10 13:24 cpu
+crw-------  1 root     root     10, 123 Mar 10 13:24 cpu_dma_latency
+crw-------  1 root     root     10, 203 Mar 10 13:24 cuse
+drwxr-xr-x  7 root     root         140 Mar 10 13:24 disk
+drwxr-xr-x  2 root     root          60 Mar 10 13:24 dma_heap
+dafanr11@Ubuntu-Server-New:/dev$
 ```
 
 ### 4. Telusuri derectory /proc. Tampilkan isi file interrupts, devices, cpuinfo, meminfo dan uptime menggunakan perintah cat. Dapatkah Anda melihat mengapa directory /proc disebut pseudo -filesystem yang memungkinkan akses ke struktur data kernel ?
  
->Direktori /proc disebut pseudo-filesystem (atau filesistem virtual) karena file-file di dalamnya tidak benar-benar tersimpan di disk. Sebaliknya, file-file tersebut dibuat secara dinamis oleh kernel saat diakses. Setiap kali kita membaca file di /proc, kernel mengambil data dari struktur data internalnya (seperti daftar proses, informasi hardware, statistik sistem) dan menyajikannya dalam format teks. Hal ini memungkinkan pengguna dan program untuk dengan mudah mengakses informasi kernel tanpa harus menggunakan system call khusus atau antarmuka pemrograman yang rumit.  
+>Direktori /proc disebut sebagai pseudo-filesystem karena merupakan sistem file virtual yang tidak menyimpan data secara fisik di hard disk, melainkan dibuat secara dinamis oleh kernel Linux di dalam memori saat sistem sedang berjalan. Isi dari direktori ini berfungsi untuk menyediakan berbagai informasi penting mengenai kondisi sistem, seperti informasi proses yang sedang berjalan, penggunaan CPU dan memori, konfigurasi kernel, serta perangkat keras yang digunakan. Dengan adanya /proc, pengguna maupun administrator sistem dapat mengakses dan memantau struktur data internal kernel melalui antarmuka yang menyerupai file biasa. Oleh karena itu, /proc menjadi mekanisme penting yang memungkinkan komunikasi antara kernel dan pengguna untuk melihat maupun mengelola informasi sistem secara langsung.
 Output
 
 ```bash
-root@ubuntuser:/dev# cd /proc
-root@ubuntuser:/proc# cat interrupts
-           CPU0       CPU1       CPU2
-  0:        125          0          0   IO-APIC   2-edge      timer
-  1:          0        111          0   IO-APIC   1-edge      i8042
-  8:          0          0          0   IO-APIC   8-edge      rtc0
-  9:          0          0          0   IO-APIC   9-fasteoi   acpi
- 12:        158          0          0   IO-APIC  12-edge      i8042
- 14:          0          0       5570   IO-APIC  14-edge      ata_piix
- 15:          0          0          0   IO-APIC  15-edge      ata_piix
- 18:          0          0          0   IO-APIC  18-fasteoi   vmwgfx
- 19:          0          0      71375   IO-APIC  19-fasteoi   ehci_hcd:usb2, enp0s3
- 20:          0       2125          0   IO-APIC  20-fasteoi   vboxguest
- 21:      78621          0          0   IO-APIC  21-fasteoi   ahci[0000:00:0d.0], snd_intel8x0
- 22:          0         26          0   IO-APIC  22-fasteoi   ohci_hcd:usb1
-NMI:          0          0          0   Non-maskable interrupts
-LOC:     158056     926706     183861   Local timer interrupts
-SPU:          0          0          0   Spurious interrupts
-PMI:          0          0          0   Performance monitoring interrupts
-IWI:        240          7         15   IRQ work interrupts
-RTR:          0          0          0   APIC ICR read retries
-RES:       3664       3039       4172   Rescheduling interrupts
-CAL:      72792      81222      68097   Function call interrupts
-TLB:        205        234        235   TLB shootdowns
-TRM:          0          0          0   Thermal event interrupts
-THR:          0          0          0   Threshold APIC interrupts
-DFR:          0          0          0   Deferred Error APIC interrupts
-MCE:          0          0          0   Machine check exceptions
-MCP:         19         19         19   Machine check polls
+dafanr11@Ubuntu-Server-New:/dev$ cd /proc
+dafanr11@Ubuntu-Server-New:/proc$ cat interrupts
+           CPU0       CPU1       CPU2       CPU3
+  0:        129          0          0          0   IO-APIC   2-edge      timer
+  1:          0          0          0         47   IO-APIC   1-edge      i8042
+  8:          0          0          0          0   IO-APIC   8-edge      rtc0
+  9:          0          0          0          0   IO-APIC   9-fasteoi   acpi
+ 12:          0        158          0          0   IO-APIC  12-edge      i8042
+ 14:          0          0       1942          0   IO-APIC  14-edge      ata_piix
+ 15:          0          0          0          0   IO-APIC  15-edge      ata_piix
+ 18:          0          0          0          0   IO-APIC  18-fasteoi   vmwgfx
+ 19:          0          0      19122          0   IO-APIC  19-fasteoi   ehci_hcd:usb2, enp0s3
+ 20:          0          0          0          0   IO-APIC  20-fasteoi   vboxguest
+ 21:          0       7127          0          0   IO-APIC  21-fasteoi   ahci[0000:00:0d.0], snd_intel8x0
+ 22:         26          0          0          0   IO-APIC  22-fasteoi   ohci_hcd:usb1
+NMI:          0          0          0          0   Non-maskable interrupts
+LOC:      14058      28507     258824      23896   Local timer interrupts
+SPU:          0          0          0          0   Spurious interrupts
+PMI:          0          0          0          0   Performance monitoring interrupts
+IWI:          2         53          4          5   IRQ work interrupts
+RTR:          0          0          0          0   APIC ICR read retries
+RES:        662        669        308        778   Rescheduling interrupts
+CAL:      14816      12339       7356       7472   Function call interrupts
+TLB:         37         23         53         30   TLB shootdowns
+TRM:          0          0          0          0   Thermal event interrupts
+THR:          0          0          0          0   Threshold APIC interrupts
+DFR:          0          0          0          0   Deferred Error APIC interrupts
+MCE:          0          0          0          0   Machine check exceptions
+MCP:          7          7          7          7   Machine check polls
 ERR:          0
 MIS:          0
-PIN:          0          0          0   Posted-interrupt notification event
-NPI:          0          0          0   Nested posted-interrupt event
-PIW:          0          0          0   Posted-interrupt wakeup event
-root@ubuntuser:/proc# cat devices
+PIN:          0          0          0          0   Posted-interrupt notification event
+NPI:          0          0          0          0   Nested posted-interrupt event
+PIW:          0          0          0          0   Posted-interrupt wakeup event
+dafanr11@Ubuntu-Server-New:/proc$ cat devices
 Character devices:
   1 mem
   4 /dev/vc/0
@@ -543,7 +502,6 @@ Character devices:
 180 usb
 189 usb_device
 202 cpu/msr
-203 cpu/cpuid
 204 ttyMAX
 226 drm
 241 hidraw
@@ -586,46 +544,46 @@ Block devices:
 253 virtblk
 254 mdp
 259 blkext
-root@ubuntuser:/proc# cat meminfo
-MemTotal:        3504524 kB
-MemFree:         2235180 kB
-MemAvailable:    3064968 kB
-Buffers:            7636 kB
-Cached:           905672 kB
+dafanr11@Ubuntu-Server-New:/proc$ cat meminfo
+MemTotal:        3910944 kB
+MemFree:         3356308 kB
+MemAvailable:    3455548 kB
+Buffers:           21400 kB
+Cached:           279184 kB
 SwapCached:            0 kB
-Active:           311768 kB
-Inactive:         649788 kB
-Active(anon):      58100 kB
+Active:           268392 kB
+Inactive:          73232 kB
+Active(anon):      50860 kB
 Inactive(anon):        0 kB
-Active(file):     253668 kB
-Inactive(file):   649788 kB
-Unevictable:       27300 kB
-Mlocked:           27300 kB
+Active(file):     217532 kB
+Inactive(file):    73232 kB
+Unevictable:       27316 kB
+Mlocked:           27316 kB
 SwapTotal:             0 kB
 SwapFree:              0 kB
 Zswap:                 0 kB
 Zswapped:              0 kB
 Dirty:                 0 kB
 Writeback:             0 kB
-AnonPages:         75564 kB
-Mapped:            84892 kB
-Shmem:              1100 kB
-KReclaimable:     120092 kB
-Slab:             177888 kB
-SReclaimable:     120092 kB
-SUnreclaim:        57796 kB
-KernelStack:        2784 kB
-PageTables:         3196 kB
+AnonPages:         68428 kB
+Mapped:            82316 kB
+Shmem:              1068 kB
+KReclaimable:      21376 kB
+Slab:              72496 kB
+SReclaimable:      21376 kB
+SUnreclaim:        51120 kB
+KernelStack:        2720 kB
+PageTables:         2884 kB
 SecPageTables:         0 kB
 NFS_Unstable:          0 kB
 Bounce:                0 kB
 WritebackTmp:          0 kB
-CommitLimit:     1752260 kB
-Committed_AS:     371088 kB
+CommitLimit:     1955472 kB
+Committed_AS:     470240 kB
 VmallocTotal:   34359738367 kB
-VmallocUsed:       19572 kB
+VmallocUsed:       19520 kB
 VmallocChunk:          0 kB
-Percpu:             2096 kB
+Percpu:             2000 kB
 HardwareCorrupted:     0 kB
 AnonHugePages:         0 kB
 ShmemHugePages:        0 kB
@@ -639,10 +597,11 @@ HugePages_Rsvd:        0
 HugePages_Surp:        0
 Hugepagesize:       2048 kB
 Hugetlb:               0 kB
-DirectMap4k:      114624 kB
-DirectMap2M:     3500032 kB
-root@ubuntuser:/proc# cat uptime
-6146.11 17468.94
+DirectMap4k:      118720 kB
+DirectMap2M:     3977216 kB
+dafanr11@Ubuntu-Server-New:/proc$ cat uptime
+2258.04 8868.08
+dafanr11@Ubuntu-Server-New:/proc$
 ```
 
 
@@ -650,116 +609,125 @@ root@ubuntuser:/proc# cat uptime
 
 Output 
 ```bash
-root@ubuntuser:/proc# cd ~yudhis
-root@ubuntuser:/home/yudhis#
+dafanr11@Ubuntu-Server-New:/proc$ cd ~dafanr11
+dafanr11@Ubuntu-Server-New:~$
 ```  
 
 ### 6. Ubah kembali ke direktory home Anda
 
 Output 
 ```bash
-root@ubuntuser:/home/yudhis# cd
-root@ubuntuser:~# pwd
-/root
-root@ubuntuser:~#
+dafanr11@Ubuntu-Server-New:~$ cd
+dafanr11@Ubuntu-Server-New:~$ pwd
+/home/dafanr11
+dafanr11@Ubuntu-Server-New:~$
 ```
 
 ### 7. Buat subdirektory work dan play.
 
 Output 
 ```bash
-root@ubuntuser:~# mkdir work play
-root@ubuntuser:~# ls -l
+dafanr11@Ubuntu-Server-New:~$ mkdir work play
+dafanr11@Ubuntu-Server-New:~$ ls -l
 total 68
-drwxr-xr-x 4 root root  4096 Mar  7 05:54 A
--rw-r--r-- 1 root root     0 Mar  1 03:54 backup-error.log
--rw-r--r-- 1 root root   704 Mar  1 03:53 backup-success.l
--rw-r--r-- 1 root root   704 Mar  1 03:54 backup-success.log
--rw-r--r-- 1 root root 30720 Mar  1 03:54 backup.tar
-drwxr-xr-x 2 root root  4096 Mar  7 05:54 C
-drwxr-xr-x 2 root root  4096 Mar  7 07:48 play
-drwxr-xr-x 5 root root  4096 Mar  7 06:17 praktikum-os
--r-xr-xr-x 1 root root  7049 Feb 18 12:32 vboxpostinstall.sh
-drwxr-xr-x 2 root root  4096 Mar  7 07:48 work
+-rw-rw-r-- 1 dafanr11 dafanr11 16433 Mar  3 14:58 all-config-files.txt
+-rw-rw-r-- 1 dafanr11 dafanr11     0 Mar  4 03:46 backup-error.log
+-rw-rw-r-- 1 dafanr11 dafanr11   124 Mar  4 03:46 backup-success.log
+-rw-rw-r-- 1 dafanr11 dafanr11 10240 Mar  4 03:46 backup.tar
+-rw-rw-r-- 1 dafanr11 dafanr11   158 Mar  3 14:52 error.log
+-rw-rw-r-- 1 dafanr11 dafanr11  1249 Mar  3 14:52 large-logs.txt
+drwxrwxr-x 2 dafanr11 dafanr11  4096 Mar 10 14:10 play
+drwxrwxr-x 5 dafanr11 dafanr11  4096 Mar 10 13:41 Sistem-Operasi
+-rw-rw-r-- 1 dafanr11 dafanr11   251 Mar  3 14:53 sorted-users.txt
+-rw-rw-r-- 1 dafanr11 dafanr11  5789 Mar  3 14:57 system-monitor-20260303-145605.log
+drwxrwxr-x 2 dafanr11 dafanr11  4096 Mar 10 14:10 work
+dafanr11@Ubuntu-Server-New:~$
 ```
 
 ### 8. Hapus subdirektory work.
 
 Output 
 ```bash
-root@ubuntuser:~# rmdir work
-root@ubuntuser:~# ls -l
+dafanr11@Ubuntu-Server-New:~$ rmdir work
+dafanr11@Ubuntu-Server-New:~$ ls -l
 total 64
-drwxr-xr-x 4 root root  4096 Mar  7 05:54 A
--rw-r--r-- 1 root root     0 Mar  1 03:54 backup-error.log
--rw-r--r-- 1 root root   704 Mar  1 03:53 backup-success.l
--rw-r--r-- 1 root root   704 Mar  1 03:54 backup-success.log
--rw-r--r-- 1 root root 30720 Mar  1 03:54 backup.tar
-drwxr-xr-x 2 root root  4096 Mar  7 05:54 C
-drwxr-xr-x 2 root root  4096 Mar  7 07:48 play
-drwxr-xr-x 5 root root  4096 Mar  7 06:17 praktikum-os
--r-xr-xr-x 1 root root  7049 Feb 18 12:32 vboxpostinstall.sh
+-rw-rw-r-- 1 dafanr11 dafanr11 16433 Mar  3 14:58 all-config-files.txt
+-rw-rw-r-- 1 dafanr11 dafanr11     0 Mar  4 03:46 backup-error.log
+-rw-rw-r-- 1 dafanr11 dafanr11   124 Mar  4 03:46 backup-success.log
+-rw-rw-r-- 1 dafanr11 dafanr11 10240 Mar  4 03:46 backup.tar
+-rw-rw-r-- 1 dafanr11 dafanr11   158 Mar  3 14:52 error.log
+-rw-rw-r-- 1 dafanr11 dafanr11  1249 Mar  3 14:52 large-logs.txt
+drwxrwxr-x 2 dafanr11 dafanr11  4096 Mar 10 14:10 play
+drwxrwxr-x 5 dafanr11 dafanr11  4096 Mar 10 13:41 Sistem-Operasi
+-rw-rw-r-- 1 dafanr11 dafanr11   251 Mar  3 14:53 sorted-users.txt
+-rw-rw-r-- 1 dafanr11 dafanr11  5789 Mar  3 14:57 system-monitor-20260303-145605.log
+dafanr11@Ubuntu-Server-New:~$
 ```
 
 ### 9. Copy file /etc/passwd ke direktory home Anda.
 
 Output 
 ```bash
-root@ubuntuser:~# cp /etc/passwd .
-root@ubuntuser:~# ls -l
+dafanr11@Ubuntu-Server-New:~$ cp /etc/passwd .
+dafanr11@Ubuntu-Server-New:~$ ls -l
 total 68
-drwxr-xr-x 4 root root  4096 Mar  7 05:54 A
--rw-r--r-- 1 root root     0 Mar  1 03:54 backup-error.log
--rw-r--r-- 1 root root   704 Mar  1 03:53 backup-success.l
--rw-r--r-- 1 root root   704 Mar  1 03:54 backup-success.log
--rw-r--r-- 1 root root 30720 Mar  1 03:54 backup.tar
-drwxr-xr-x 2 root root  4096 Mar  7 05:54 C
--rw-r--r-- 1 root root  1783 Mar  7 07:51 passwd
-drwxr-xr-x 2 root root  4096 Mar  7 07:48 play
-drwxr-xr-x 5 root root  4096 Mar  7 06:17 praktikum-os
--r-xr-xr-x 1 root root  7049 Feb 18 12:32 vboxpostinstall.sh
+-rw-rw-r-- 1 dafanr11 dafanr11 16433 Mar  3 14:58 all-config-files.txt
+-rw-rw-r-- 1 dafanr11 dafanr11     0 Mar  4 03:46 backup-error.log
+-rw-rw-r-- 1 dafanr11 dafanr11   124 Mar  4 03:46 backup-success.log
+-rw-rw-r-- 1 dafanr11 dafanr11 10240 Mar  4 03:46 backup.tar
+-rw-rw-r-- 1 dafanr11 dafanr11   158 Mar  3 14:52 error.log
+-rw-rw-r-- 1 dafanr11 dafanr11  1249 Mar  3 14:52 large-logs.txt
+-rw-r--r-- 1 dafanr11 dafanr11  1789 Mar 10 14:12 passwd
+drwxrwxr-x 2 dafanr11 dafanr11  4096 Mar 10 14:10 play
+drwxrwxr-x 5 dafanr11 dafanr11  4096 Mar 10 13:41 Sistem-Operasi
+-rw-rw-r-- 1 dafanr11 dafanr11   251 Mar  3 14:53 sorted-users.txt
+-rw-rw-r-- 1 dafanr11 dafanr11  5789 Mar  3 14:57 system-monitor-20260303-145605.log
+dafanr11@Ubuntu-Server-New:~$
 ```
 
 ### 10. Pindahkan ke subdirektory play
 
 Output 
 ```bash
-root@ubuntuser:~# mv passwd play/
-root@ubuntuser:~# ls -l play
+dafanr11@Ubuntu-Server-New:~$ mv passwd play/
+dafanr11@Ubuntu-Server-New:~$ ls -l play
 total 4
--rw-r--r-- 1 root root 1783 Mar  7 07:51 passwd
+-rw-r--r-- 1 dafanr11 dafanr11 1789 Mar 10 14:12 passwd
+dafanr11@Ubuntu-Server-New:~$
 ```
 
 ### 11. Ubahlah ke subdirektory play dan buat symbolic link dengan nama terminal yang menunjuk ke perangkat tty. Apa yang terjadi jika melakukan hard link ke perangkat tty ?
 
->Hard link tidak diizinkan untuk file device, meskipun sebagai root. 
+>Jika mencoba membuat hard link ke perangkat tty, sistem akan menolak perintah tersebut dan biasanya menampilkan pesan error. Hal ini terjadi karena hard link tidak diizinkan untuk file device, bahkan jika perintah dijalankan oleh root, demi menjaga keamanan dan stabilitas sistem.
 
 Output 
 ```bash
-root@ubuntuser:~# cd play
-root@ubuntuser:~/play# pwd
-/root/play
-root@ubuntuser:~/play# who am i
-yudhis   pts/2        2026-03-07 06:17 (10.0.2.2)
-root@ubuntuser:~/play# ln -s /dev/pts/2 terminal
-root@ubuntuser:~/play# ls -l
+dafanr11@Ubuntu-Server-New:~$ cd play
+dafanr11@Ubuntu-Server-New:~/play$ pwd
+/home/dafanr11/play
+dafanr11@Ubuntu-Server-New:~/play$ who am i
+dafanr11 pts/0        2026-03-10 13:29 (10.0.2.2)
+dafanr11@Ubuntu-Server-New:~/play$ ln -s /dev/pts/2 terminal
+dafanr11@Ubuntu-Server-New:~/play$ ls -l
 total 4
--rw-r--r-- 1 root root 1783 Mar  7 07:51 passwd
-lrwxrwxrwx 1 root root   10 Mar  7 07:54 terminal -> /dev/pts/2
-root@ubuntuser:~/play# ln /dev/pts/0 hardtty
+-rw-r--r-- 1 dafanr11 dafanr11 1789 Mar 10 14:12 passwd
+lrwxrwxrwx 1 dafanr11 dafanr11   10 Mar 10 14:16 terminal -> /dev/pts/2
+dafanr11@Ubuntu-Server-New:~/play$ ln /dev/pts/0 hardtty
 ln: failed to create hard link 'hardtty' => '/dev/pts/0': Invalid cross-device link
+dafanr11@Ubuntu-Server-New:~/play$
 ```
  
 
 ### 12. Buatlah file bernama hello.txt yang berisi kata ”hello word”. Dapatkah Anda gunakan ”cp” menggunakan ”terminal” sebagai file asal untuk menghasilkan efek yang sama ?
 
->Tidak. Mencoba cp terminal hello2.txt akan membaca dari terminal (input keyboard) dan menulis ke file. Hasilnya tergantung apa yang diketik, bukan "hello word". 
+>Tidak. Perintah cp dengan terminal (/dev/tty) sebagai sumber tidak dapat secara langsung menghasilkan efek yang sama seperti menyalin file hello.txt, karena terminal hanya memberikan input dari pengguna, bukan membaca isi file yang sudah ada.
 
 Output 
 ```bash
-root@ubuntuser:~/play# echo "hello word" > hello.txt
-root@ubuntuser:~/play# cat hello.txt
+dafanr11@Ubuntu-Server-New:~/play$ echo "hello word" > hello.txt
+dafanr11@Ubuntu-Server-New:~/play$ cat hello.txt
 hello word
+dafanr11@Ubuntu-Server-New:~/play$
 ```
 
 ### 13. Copy hello.txt ke terminal. Apa yang terjadi ?
@@ -768,48 +736,53 @@ hello word
 
 Output 
 ```bash
-root@ubuntuser:~/play# cp hello.txt /dev/pts/2
+dafanr11@Ubuntu-Server-New:~/play$ cp hello.txt /dev/pts/0
 hello word
+dafanr11@Ubuntu-Server-New:~/play$
 ```
 
 ### 14. Masih direktory home, copy keseluruhan direktory play ke direktory bernama work menggunakan symbolic link
 
 Output 
 ```bash
-root@ubuntuser:~/play# cd ..
-root@ubuntuser:~# pwd
-/root
-root@ubuntuser:~# ln -s play work
-root@ubuntuser:~# ls -l
+dafanr11@Ubuntu-Server-New:~/play$ cd ..
+dafanr11@Ubuntu-Server-New:~$ pwd
+/home/dafanr11
+dafanr11@Ubuntu-Server-New:~$ ln -s play work
+dafanr11@Ubuntu-Server-New:~$ ls -l
 total 64
-drwxr-xr-x 4 root root  4096 Mar  7 05:54 A
--rw-r--r-- 1 root root     0 Mar  1 03:54 backup-error.log
--rw-r--r-- 1 root root   704 Mar  1 03:53 backup-success.l
--rw-r--r-- 1 root root   704 Mar  1 03:54 backup-success.log
--rw-r--r-- 1 root root 30720 Mar  1 03:54 backup.tar
-drwxr-xr-x 2 root root  4096 Mar  7 05:54 C
-drwxr-xr-x 2 root root  4096 Mar  7 07:57 play
-drwxr-xr-x 5 root root  4096 Mar  7 06:17 praktikum-os
--r-xr-xr-x 1 root root  7049 Feb 18 12:32 vboxpostinstall.sh
-lrwxrwxrwx 1 root root     4 Mar  7 08:00 work -> play
+-rw-rw-r-- 1 dafanr11 dafanr11 16433 Mar  3 14:58 all-config-files.txt
+-rw-rw-r-- 1 dafanr11 dafanr11     0 Mar  4 03:46 backup-error.log
+-rw-rw-r-- 1 dafanr11 dafanr11   124 Mar  4 03:46 backup-success.log
+-rw-rw-r-- 1 dafanr11 dafanr11 10240 Mar  4 03:46 backup.tar
+-rw-rw-r-- 1 dafanr11 dafanr11   158 Mar  3 14:52 error.log
+-rw-rw-r-- 1 dafanr11 dafanr11  1249 Mar  3 14:52 large-logs.txt
+drwxrwxr-x 2 dafanr11 dafanr11  4096 Mar 10 14:17 play
+drwxrwxr-x 5 dafanr11 dafanr11  4096 Mar 10 13:41 Sistem-Operasi
+-rw-rw-r-- 1 dafanr11 dafanr11   251 Mar  3 14:53 sorted-users.txt
+-rw-rw-r-- 1 dafanr11 dafanr11  5789 Mar  3 14:57 system-monitor-20260303-145605.log
+lrwxrwxrwx 1 dafanr11 dafanr11     4 Mar 10 14:26 work -> play
+dafanr11@Ubuntu-Server-New:~$
 ```
 
 ### 15. Hapus direktory work dan isinya dengan satu perintah
 
 Output 
 ```bash
-root@ubuntuser:~# rm -rf work
-root@ubuntuser:~# ls -l
+dafanr11@Ubuntu-Server-New:~$ rm -rf work
+dafanr11@Ubuntu-Server-New:~$ ls -l
 total 64
-drwxr-xr-x 4 root root  4096 Mar  7 05:54 A
--rw-r--r-- 1 root root     0 Mar  1 03:54 backup-error.log
--rw-r--r-- 1 root root   704 Mar  1 03:53 backup-success.l
--rw-r--r-- 1 root root   704 Mar  1 03:54 backup-success.log
--rw-r--r-- 1 root root 30720 Mar  1 03:54 backup.tar
-drwxr-xr-x 2 root root  4096 Mar  7 05:54 C
-drwxr-xr-x 2 root root  4096 Mar  7 07:57 play
-drwxr-xr-x 5 root root  4096 Mar  7 06:17 praktikum-os
--r-xr-xr-x 1 root root  7049 Feb 18 12:32 vboxpostinstall.sh
+-rw-rw-r-- 1 dafanr11 dafanr11 16433 Mar  3 14:58 all-config-files.txt
+-rw-rw-r-- 1 dafanr11 dafanr11     0 Mar  4 03:46 backup-error.log
+-rw-rw-r-- 1 dafanr11 dafanr11   124 Mar  4 03:46 backup-success.log
+-rw-rw-r-- 1 dafanr11 dafanr11 10240 Mar  4 03:46 backup.tar
+-rw-rw-r-- 1 dafanr11 dafanr11   158 Mar  3 14:52 error.log
+-rw-rw-r-- 1 dafanr11 dafanr11  1249 Mar  3 14:52 large-logs.txt
+drwxrwxr-x 2 dafanr11 dafanr11  4096 Mar 10 14:17 play
+drwxrwxr-x 5 dafanr11 dafanr11  4096 Mar 10 13:41 Sistem-Operasi
+-rw-rw-r-- 1 dafanr11 dafanr11   251 Mar  3 14:53 sorted-users.txt
+-rw-rw-r-- 1 dafanr11 dafanr11  5789 Mar  3 14:57 system-monitor-20260303-145605.log
+dafanr11@Ubuntu-Server-New:~$
 ```
 
 
@@ -1134,4 +1107,5 @@ Semua direktori ditelusuri dengan cd, ls, dan cat untuk file teks (misal config 
 
 ### 3. Kesimpulan
 
-Praktikum ini memberikan pemahaman komprehensif tentang sistem file Linux, meliputi struktur hierarkis dari root (/), fungsi direktori standar, serta penggunaan perintah dasar seperti cd, mkdir, cp, mv, dan rm untuk navigasi dan manipulasi file. Konsep link dipelajari melalui perbedaan hard link yang berbagi inode dan soft link sebagai pointer, dengan pemahaman bahwa hard link tidak dapat digunakan untuk direktori atau lintas filesystem. Selain itu, praktikum memperkenalkan pseudo-filesystem /proc yang menyediakan akses real-time ke data kernel, serta representasi perangkat keras sebagai file di /dev. Kemampuan mencari file dan teks dengan perintah find, locate, which, dan grep juga menjadi keterampilan penting. Secara keseluruhan, praktikum ini membangun fondasi yang kokoh untuk administrasi sistem dan pengembangan di lingkungan Linux.
+Berdasarkan praktikum yang telah dilakukan, dapat disimpulkan bahwa sistem operasi Linux memiliki struktur direktori yang tersusun secara hirarkis seperti pohon (tree) yang dimulai dari root (/). Pengguna dapat melakukan navigasi dan pengelolaan direktori menggunakan perintah seperti pwd, cd, mkdir, dan rmdir, serta melakukan manipulasi file menggunakan cp, mv, dan rm.
+Selain itu, praktikum ini juga memperkenalkan konsep hard link dan symbolic link, serta penggunaan perintah seperti file, find, which, locate, dan grep untuk melihat informasi file dan mencari file atau teks di dalam sistem. Secara umum, praktikum ini membantu memahami dasar pengelolaan file dan direktori pada sistem operasi Linux.
