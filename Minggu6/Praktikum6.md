@@ -570,17 +570,16 @@ ps aux | grep -v grep | grep sleep
 
 Output :  
 ```bash
-root@ubuntuser:/home/yudhis# sleep 500 &
-[2] 1822
-[1]   Done                    nice -n 5 sleep 200
-root@ubuntuser:/home/yudhis# sleep 600 &
-[3] 1826
-root@ubuntuser:/home/yudhis# sleep 700 &
-[4] 1827
-root@ubuntuser:/home/yudhis# ps aux | grep -v grep | grep sleep
-root        1822  0.0  0.0   5684  2104 pts/2    S    14:44   0:00 sleep 500
-root        1826  0.0  0.0   5684  2104 pts/2    S    14:45   0:00 sleep 600
-root        1827  0.0  0.0   5684  2108 pts/2    S    14:45   0:00 sleep 700
+dafanr11@Ubuntu-Server-New:~$ sleep 500 &
+[1] 1192
+dafanr11@Ubuntu-Server-New:~$ sleep 600 &
+[2] 1193
+dafanr11@Ubuntu-Server-New:~$ sleep 700 &
+[3] 1194
+dafanr11@Ubuntu-Server-New:~$ ps aux | grep -v grep | grep sleep
+dafanr11    1192  0.0  0.0   5684  2104 pts/0    S    23:19   0:00 sleep 500
+dafanr11    1193  0.0  0.0   5684  2104 pts/0    S    23:19   0:00 sleep 600
+dafanr11    1194  0.0  0.0   5684  2108 pts/0    S    23:19   0:00 sleep 700
 ```
 
 2. Hentikan satu proses dengan SIGTERM dan verifikasi:
@@ -591,11 +590,11 @@ ps aux | grep -v grep | grep sleep
 
 Output :  
 ```bash
-root@ubuntuser:/home/yudhis# kill 1822
-root@ubuntuser:/home/yudhis# ps aux | grep -v grep | grep sleep
-root        1826  0.0  0.0   5684  2104 pts/2    S    14:45   0:00 sleep 600
-root        1827  0.0  0.0   5684  2108 pts/2    S    14:45   0:00 sleep 700
-[2]   Terminated              sleep 500
+dafanr11@Ubuntu-Server-New:~$ kill 1192
+dafanr11@Ubuntu-Server-New:~$ ps aux | grep -v grep | grep sleep
+dafanr11    1193  0.0  0.0   5684  2104 pts/0    S    23:19   0:00 sleep 600
+dafanr11    1194  0.0  0.0   5684  2108 pts/0    S    23:19   0:00 sleep 700
+[1]   Terminated              sleep 500
 ```
 
 3. Jeda dan lanjutkan proses dengan SIGSTOP/SIGCONT:
@@ -609,18 +608,18 @@ ps aux | grep sleep # STAT kembali ke S
 
 Output :  
 ```bash
-root@ubuntuser:/home/yudhis# kill -SIGSTOP 1826
-root@ubuntuser:/home/yudhis# ps aux | grep sleep
-root        1826  0.0  0.0   5684  2104 pts/2    T    14:45   0:00 sleep 600
-root        1827  0.0  0.0   5684  2108 pts/2    S    14:45   0:00 sleep 700
-root        1838  0.0  0.0   6544  2328 pts/2    S+   14:48   0:00 grep --color=auto sleep
+dafanr11@Ubuntu-Server-New:~$ kill -SIGSTOP 1193
+dafanr11@Ubuntu-Server-New:~$ ps aux | grep sleep
+dafanr11    1193  0.0  0.0   5684  2104 pts/0    T    23:19   0:00 sleep 600
+dafanr11    1194  0.0  0.0   5684  2108 pts/0    S    23:19   0:00 sleep 700
+dafanr11    1205  0.0  0.0   6544  2332 pts/0    S+   23:22   0:00 grep --color=auto sleep
 
-[3]+  Stopped                 sleep 600
-root@ubuntuser:/home/yudhis# kill -SIGCONT 1826
-root@ubuntuser:/home/yudhis# ps aux | grep sleep
-root        1826  0.0  0.0   5684  2104 pts/2    S    14:45   0:00 sleep 600
-root        1827  0.0  0.0   5684  2108 pts/2    S    14:45   0:00 sleep 700
-root        1840  0.0  0.0   6544  2328 pts/2    S+   14:48   0:00 grep --color=auto sleep
+[2]+  Stopped                 sleep 600
+dafanr11@Ubuntu-Server-New:~$ kill -SIGCONT 1193
+dafanr11@Ubuntu-Server-New:~$ ps aux | grep sleep
+dafanr11    1193  0.0  0.0   5684  2104 pts/0    S    23:19   0:00 sleep 600
+dafanr11    1194  0.0  0.0   5684  2108 pts/0    S    23:19   0:00 sleep 700
+dafanr11    1207  0.0  0.0   6544  2328 pts/0    S+   23:22   0:00 grep --color=auto sleep
 ```
 
 4. Hentikan semua proses sleep sekaligus:
@@ -630,11 +629,9 @@ pkill sleep
 
 Output :  
 ```bash
-root@ubuntuser:/home/yudhis# pkill sleep
-root@ubuntuser:/home/yudhis# ps aux | grep sleep
-root        1844  0.0  0.0   6544  2332 pts/2    S+   14:49   0:00 grep --color=auto sleep
-[3]-  Terminated              sleep 600
-[4]+  Terminated              sleep 700
+dafanr11@Ubuntu-Server-New:~$ pkill sleep
+[2]-  Terminated              sleep 600
+[3]+  Terminated              sleep 700
 ```
 
 
@@ -644,28 +641,28 @@ root        1844  0.0  0.0   6544  2332 pts/2    S+   14:49   0:00 grep --color=
 3. Hentikan proses dengan SIGTERM lalu verifikasi sudah tidak ada. Kapan Anda memilih SIGKILL daripada SIGTERM?
 
 Jawaban :  
-1. Kolom STAT berubah menjadi T (stopped). Proses dihentikan sementara dan tidak mendapat jatah CPU. 
+1. Kondisi yang muncul adalah status proses berubah menjadi T (Stopped), yang berarti proses tersebut sedang dihentikan sementara oleh sinyal kontrol dan tidak akan berlanjut hingga menerima sinyal SIGCONT.
 ```bash
-root@ubuntuser:/home/yudhis# sleep 400 &
-[1] 1857
-root@ubuntuser:/home/yudhis# kill -SIGSTOP 1857
-root@ubuntuser:/home/yudhis# ps aux | grep sleep
-root        1857  0.0  0.0   5684  2104 pts/2    T    14:54   0:00 sleep 400
-root        1859  0.0  0.0   6544  2332 pts/2    S+   14:54   0:00 grep --color=auto sleep
+dafanr11@Ubuntu-Server-New:~$ sleep 400 &
+[1] 1214
+dafanr11@Ubuntu-Server-New:~$ kill -SIGSTOP 1214
+dafanr11@Ubuntu-Server-New:~$ ps aux | grep sleep
+dafanr11    1214  0.0  0.0   5684  2104 pts/0    T    23:25   0:00 sleep 400
+dafanr11    1219  0.0  0.0   6544  2328 pts/0    S+   23:25   0:00 grep --color=auto sleep
 
 [1]+  Stopped                 sleep 400
 ```
-2. STAT kembali ke S (sleeping) dan proses berjalan normal. 
+2. STAT kembali ke sleep dan proses akan berjalan seperti normal. 
 ```bash
-root@ubuntuser:/home/yudhis# kill -SIGCONT 1857
-root@ubuntuser:/home/yudhis# ps aux | grep sleep
-root        1857  0.0  0.0   5684  2104 pts/2    S    14:54   0:00 sleep 400
-root        1861  0.0  0.0   6544  2328 pts/2    S+   14:54   0:00 grep --color=auto sleep
+dafanr11@Ubuntu-Server-New:~$ kill -SIGCONT 1214
+dafanr11@Ubuntu-Server-New:~$ ps aux | grep sleep
+dafanr11    1214  0.0  0.0   5684  2104 pts/0    S    23:25   0:00 sleep 400
+dafanr11    1222  0.0  0.0   6544  2332 pts/0    S+   23:26   0:00 grep --color=auto sleep
 ```
-3. SIGTERM digunakan terlebih dahulu karena memberi kesempatan proses menyimpan data dan keluar secara rapi. SIGKILL hanya digunakan jika proses tidak merespon SIGTERM atau benar-benar harus dihentikan paksa. 
+3. Pilih SIGKILL jika proses sudah tidak responsif (freeze) atau tetap berjalan meski sudah diberi perintah SIGTERM. Hal ini dikarenakan SIGTERM adalah permintaan sopan agar program berhenti secara normal, sedangkan SIGKILL adalah perintah paksa dari kernel yang tidak dapat diabaikan oleh proses tersebut. 
 ```bash
-root@ubuntuser:/home/yudhis# kill 1857
-root@ubuntuser:/home/yudhis# ps aux | grep -v grep | grep sleep
+dafanr11@Ubuntu-Server-New:~$ kill 1214
+dafanr11@Ubuntu-Server-New:~$ ps aux | grep -v grep | grep sleep
 [1]+  Terminated              sleep 400
 ```
 
@@ -680,13 +677,13 @@ jobs
 
 Output : 
 ```bash
-root@ubuntuser:/home/yudhis# sleep 200 &
-[1] 1874
-root@ubuntuser:/home/yudhis# sleep 300 &
-[2] 1875
-root@ubuntuser:/home/yudhis# sleep 400 &
-[3] 1876
-root@ubuntuser:/home/yudhis# jobs
+dafanr11@Ubuntu-Server-New:~$ sleep 200 &
+[1] 1266
+dafanr11@Ubuntu-Server-New:~$ sleep 300 &
+[2] 1267
+dafanr11@Ubuntu-Server-New:~$ sleep 400 &
+[3] 1268
+dafanr11@Ubuntu-Server-New:~$ jobs
 [1]   Running                 sleep 200 &
 [2]-  Running                 sleep 300 &
 [3]+  Running                 sleep 400 &
@@ -702,13 +699,13 @@ jobs
 
 Output : 
 ```bash
-root@ubuntuser:/home/yudhis# fg %1
+dafanr11@Ubuntu-Server-New:~$ fg %1
 sleep 200
 ^Z
 [1]+  Stopped                 sleep 200
-root@ubuntuser:/home/yudhis# bg %1
+dafanr11@Ubuntu-Server-New:~$ bg %1
 [1]+ sleep 200 &
-root@ubuntuser:/home/yudhis# jobs
+dafanr11@Ubuntu-Server-New:~$ jobs
 [1]   Running                 sleep 200 &
 [2]-  Running                 sleep 300 &
 [3]+  Running                 sleep 400 &
@@ -722,11 +719,11 @@ jobs
 
 Output : 
 ```bash
-root@ubuntuser:/home/yudhis# kill %1 %2 %3
+dafanr11@Ubuntu-Server-New:~$ kill %1 %2 %3
+dafanr11@Ubuntu-Server-New:~$ jobs
 [1]   Terminated              sleep 200
 [2]-  Terminated              sleep 300
 [3]+  Terminated              sleep 400
-root@ubuntuser:/home/yudhis# jobs
 ```
 
 
@@ -738,63 +735,61 @@ root@ubuntuser:/home/yudhis# jobs
 
 Jawaban :  
 
-1. Terminal terisi penuh dengan tampilan top dan tidak bisa menerima perintah lain sampai top keluar. 
+1. Terminal terisi penuh dengan tampilan top dan tidak bisa menerima perintah lain sampai top keluar dengan menekan ctrl + z. 
 ```bash
-top - 15:07:20 up  1:20,  2 users,  load average: 0.00, 0.01, 0.00
-Tasks: 134 total,   1 running, 133 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  0.0 us,  0.3 sy,  0.0 ni, 95.1 id,  0.2 wa,  0.0 hi,  4.3 si,  0.
-MiB Mem :   3422.4 total,   2269.6 free,    370.7 used,    944.3 buff/cache
-MiB Swap:      0.0 total,      0.0 free,      0.0 used.   3051.6 avail Mem
+top - 23:42:31 up 29 min,  2 users,  load average: 0.00, 0.00, 0.00
+Tasks: 137 total,   3 running, 134 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.2 sy,  0.0 ni, 99.4 id,  0.3 wa,  0.0 hi,  0.1 si,  0.0 st
+MiB Mem :   3819.3 total,   3381.4 free,    416.3 used,    236.9 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   3403.0 avail Mem
 
-    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+
-    345 root      20   0       0      0      0 I   0.7   0.0   0:25.64
-    256 root      20   0       0      0      0 S   0.3   0.0   0:00.26
-    279 root      20   0       0      0      0 I   0.3   0.0   0:00.30
-      1 root      20   0   22112  13268   9476 S   0.0   0.4   0:01.63
-      2 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     11 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     12 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     13 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     14 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     15 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     16 root      20   0       0      0      0 S   0.0   0.0   0:00.65
-     17 root      20   0       0      0      0 I   0.0   0.0   0:00.63
-     18 root      rt   0       0      0      0 S   0.0   0.0   0:00.22
-     19 root     -51   0       0      0      0 S   0.0   0.0   0:00.00
-     20 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     22 root     -51   0       0      0      0 S   0.0   0.0   0:00.00
-     23 root      rt   0       0      0      0 S   0.0   0.0   0:00.43
-     24 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-     26 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     27 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     28 root     -51   0       0      0      0 S   0.0   0.0   0:00.00
-     29 root      rt   0       0      0      0 S   0.0   0.0   0:00.33
-     30 root      20   0       0      0      0 S   0.0   0.0   0:00.28
-     36 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-     37 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     38 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     39 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-     40 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     41 root      20   0       0      0      0 I   0.0   0.0   0:00.54
-     43 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1265 root      20   0       0      0      0 R   0.6   0.0   0:00.58 kworker/0:2-events
+    816 root      20   0       0      0      0 I   0.3   0.0   0:01.34 kworker/3:3-mm_percpu_wq
+    836 root      20   0       0      0      0 I   0.3   0.0   0:01.22 kworker/2:3-events
+      1 root      20   0   21984  13208   9532 S   0.0   0.3   0:01.37 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.03 kthreadd
+      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_g
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_p
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_
+      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns
+     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri
+     12 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_pe
+     13 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_kthread
+     14 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_rude_kthread
+     15 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_trace_kthread
+     16 root      20   0       0      0      0 S   0.0   0.0   0:00.12 ksoftirqd/0
+     17 root      20   0       0      0      0 I   0.0   0.0   0:00.54 rcu_preempt
+     18 root      rt   0       0      0      0 S   0.0   0.0   0:00.11 migration/0
+     19 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0
+     20 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0
+     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1
+     22 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1
+     23 root      rt   0       0      0      0 S   0.0   0.0   0:00.44 migration/1
+     24 root      20   0       0      0      0 S   0.0   0.0   0:00.15 ksoftirqd/1
+     27 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2
+     28 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/2
+     29 root      rt   0       0      0      0 S   0.0   0.0   0:00.47 migration/2
+     30 root      20   0       0      0      0 S   0.0   0.0   0:00.01 ksoftirqd/2
+     33 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/3
+     34 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/3
+     35 root      rt   0       0      0      0 S   0.0   0.0   0:00.08 migration/3
+     36 root      20   0       0      0      0 S   0.0   0.0   0:00.01 ksoftirqd/3
+     38 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/3:0H-events_highpri
+     40 root      20   0       0      0      0 I   0.0   0.0   0:00.16 kworker/u10:0-events_power_efficient
 ```
 
-2. Status menunjukkan Stopped karena top dijeda (dikirim SIGSTOP).
+2. Kondisi yang ditampilkan adalah status Stopped, yang menunjukkan bahwa perintah top telah dihentikan sementara dan dipindahkan ke latar belakang (background)
 ```bash
 [1]+  Stopped                 top
-root@ubuntuser:/home/yudhis# jobs
+dafanr11@Ubuntu-Server-New:~$ jobs
 [1]+  Stopped                 top
 ```
 
-3. Top tetap berjalan di background, tapi outputnya akan terus menulis ke terminal sehingga mengacaukan tampilan. Top kurang cocok di background karena interaktif. 
+3. Top tidak dapat berjalan dengan baik di background karena ia adalah program interaktif yang membutuhkan akses langsung ke layar terminal untuk memperbarui tampilan secara real-time. Begitu dipindah ke latar belakang, proses tersebut biasanya akan langsung terhenti (stopped) kembali karena tidak bisa menerima input atau mengirim output visual ke terminal. 
 ```bash
-root@ubuntuser:/home/yudhis# bg %1
+dafanr11@Ubuntu-Server-New:~$ bg %1
 [1]+ top &
 
 [1]+  Stopped                 top
@@ -802,49 +797,59 @@ root@ubuntuser:/home/yudhis# bg %1
 
 4. Top kembali ke foreground, lalu tekan q untuk keluar dengan normal. 
 ```bash
-top - 15:10:01 up  1:23,  2 users,  load average: 0.00, 0.00, 0.00
-Tasks: 134 total,   1 running, 133 sleeping,   0 stopped,   0 zombie
-%Cpu(s):  0.0 us,  0.2 sy,  0.0 ni, 95.9 id,  0.0 wa,  0.0 hi,  3.9 si,  0.
-MiB Mem :   3422.4 total,   2269.6 free,    370.7 used,    944.3 buff/cache
-MiB Swap:      0.0 total,      0.0 free,      0.0 used.   3051.7 avail Mem
+top - 23:43:36 up 30 min,  2 users,  load average: 0.12, 0.03, 0.01
+Tasks: 136 total,   1 running, 135 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.1 sy,  0.0 ni, 99.8 id,  0.0 wa,  0.0 hi,  0.1 si,  0.0 st
+MiB Mem :   3819.3 total,   3381.4 free,    416.3 used,    236.9 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   3403.0 avail Mem
 
-    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+
-    345 root      20   0       0      0      0 I   0.7   0.0   0:26.82
-    379 root      rt   0  288988  27324   8760 S   0.3   0.8   0:02.26
-    437 root      20   0       0      0      0 I   0.3   0.0   0:06.91
-   1880 root      20   0       0      0      0 I   0.3   0.0   0:00.08
-   1883 root      20   0   11940   6012   3780 R   0.3   0.2   0:00.10
-      1 root      20   0   22112  13268   9476 S   0.0   0.4   0:01.64
-      2 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     11 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     12 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     13 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     14 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     15 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     16 root      20   0       0      0      0 S   0.0   0.0   0:00.65
-     17 root      20   0       0      0      0 I   0.0   0.0   0:00.64
-     18 root      rt   0       0      0      0 S   0.0   0.0   0:00.23
-     19 root     -51   0       0      0      0 S   0.0   0.0   0:00.00
-     20 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     22 root     -51   0       0      0      0 S   0.0   0.0   0:00.00
-     23 root      rt   0       0      0      0 S   0.0   0.0   0:00.44
-     24 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-     26 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     27 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     28 root     -51   0       0      0      0 S   0.0   0.0   0:00.00
-     29 root      rt   0       0      0      0 S   0.0   0.0   0:00.33
-     30 root      20   0       0      0      0 S   0.0   0.0   0:00.28
-     36 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-     37 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     38 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     39 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-     40 root      20   0       0      0      0 S   0.0   0.0   0:00.00
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+     59 root      20   0       0      0      0 I   1.0   0.0   0:08.75 kworker/1:1-events
+     18 root      rt   0       0      0      0 S   0.1   0.0   0:00.12 migration/0
+    386 root      rt   0  288988  27324   8760 S   0.1   0.7   0:00.85 multipathd
+   1220 root      20   0       0      0      0 I   0.1   0.0   0:00.39 kworker/u10:3-events_power_efficient
+   1255 root      20   0  314096   9268   7640 S   0.1   0.2   0:00.40 upowerd
+top - 23:50:02 up 36 min,  2 users,  load average: 0.05, 0.01, 0.00
+Tasks: 135 total,   1 running, 134 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.2 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.1 si,  0.0 st
+MiB Mem :   3819.3 total,   3381.4 free,    416.2 used,    237.1 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   3403.1 avail Mem
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+     59 root      20   0       0      0      0 I   0.7   0.0   0:10.01 kworker/1:1-events
+   1255 root      20   0  314096   9288   7640 S   0.7   0.2   0:00.64 upowerd
+     79 root      20   0       0      0      0 I   0.3   0.0   0:00.65 kworker/u10:2-events_power_efficient
+      1 root      20   0   21984  13208   9532 S   0.0   0.3   0:01.38 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.03 kthreadd
+      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_g
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_p
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_
+      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns
+     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri
+     12 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_pe
+     13 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_kthread
+     14 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_rude_kthread
+     15 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_trace_kthread
+     16 root      20   0       0      0      0 S   0.0   0.0   0:00.14 ksoftirqd/0
+     17 root      20   0       0      0      0 I   0.0   0.0   0:00.60 rcu_preempt
+     18 root      rt   0       0      0      0 S   0.0   0.0   0:00.13 migration/0
+     19 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0
+     20 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0
+     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1
+     22 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1
+     23 root      rt   0       0      0      0 S   0.0   0.0   0:00.45 migration/1
+     24 root      20   0       0      0      0 S   0.0   0.0   0:00.17 ksoftirqd/1
+     27 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2
+     28 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/2
+     29 root      rt   0       0      0      0 S   0.0   0.0   0:00.49 migration/2
+     30 root      20   0       0      0      0 S   0.0   0.0   0:00.01 ksoftirqd/2
+     33 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/3
+     34 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/3
+     35 root      rt   0       0      0      0 S   0.0   0.0   0:00.10 migration/3
+     36 root      20   0       0      0      0 S   0.0   0.0   0:00.01 ksoftirqd/3
+     38 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/3:0H-events_highpri
+     43 root      20   0       0      0      0 S   0.0   0.0   0:00.00 kdevtmpfs
 ```
 
 
@@ -857,28 +862,28 @@ ps aux -- sort = -% mem | head -10
 
 Output ;  
 ```bash
-root@ubuntuser:/home/yudhis# ps aux --sort=-%cpu | head -10
+dafanr11@Ubuntu-Server-New:~$ ps aux --sort=-%cpu | head -10
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root        1887  300  0.1  10884  4624 pts/2    R+   15:13   0:00 ps aux --sort=-%cpu
-root         345  0.5  0.0      0     0 ?        I    13:47   0:28 [kworker/2:3-events]
-yudhis      1052  0.3  0.2  13764  7484 ?        S    13:49   0:18 sshd: yudhis@pts/1
-root         437  0.1  0.0      0     0 ?        I    13:47   0:07 [kworker/0:3-events]
-root          72  0.1  0.0      0     0 ?        I    13:47   0:07 [kworker/1:2-events]
-root        1110  0.0  1.2 685756 43676 ?        Ssl  13:51   0:03 /usr/libexec/fwupd/fwupd
-root         379  0.0  0.7 288988 27324 ?        SLsl 13:47   0:02 /sbin/multipathd -d -s
-root         767  0.0  0.1 293152  3764 ?        Sl   13:47   0:02 /usr/sbin/VBoxService
-root        1120  0.0  0.2 314392  9732 ?        Ssl  13:51   0:02 /usr/libexec/upowerd
-root@ubuntuser:/home/yudhis# ps aux --sort=-%mem | head -10
+dafanr11    1293  200  0.1  10884  4580 pts/0    R+   23:51   0:00 ps aux --sort=-%cpu
+root          59  0.4  0.0      0     0 ?        I    23:13   0:10 [kworker/1:1-events]
+dafanr11    1182  0.3  0.1  14972  7116 ?        S    23:19   0:06 sshd: dafanr11@pts/0
+root        1281  0.2  0.0      0     0 ?        I    23:47   0:00 [kworker/0:1-events]
+root        1265  0.1  0.0      0     0 ?        I    23:36   0:01 [kworker/0:2-mm_percpu_wq]
+root         836  0.0  0.0      0     0 ?        I    23:13   0:02 [kworker/2:3-events]
+root         816  0.0  0.0      0     0 ?        I    23:13   0:01 [kworker/3:3-events]
+root        1255  0.0  0.2 314096  9292 ?        Ssl  23:35   0:00 /usr/libexec/upowerd
+root        1248  0.0  1.0 478196 41868 ?        Ssl  23:35   0:00 /usr/libexec/fwupd/fwupd
+dafanr11@Ubuntu-Server-New:~$ ps aux --sort=-%mem | head -10
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root        1110  0.0  1.2 685756 43676 ?        Ssl  13:51   0:03 /usr/libexec/fwupd/fwupd
-root         379  0.0  0.7 288988 27324 ?        SLsl 13:47   0:02 /sbin/multipathd -d -s
-root         731  0.0  0.6 109688 23192 ?        Ssl  13:47   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
-root         323  0.0  0.5  66860 17524 ?        S<s  13:47   0:00 /usr/lib/systemd/systemd-journald
-root         668  0.0  0.3 468972 13608 ?        Ssl  13:47   0:00 /usr/libexec/udisks2/udisksd
-root           1  0.0  0.3  22112 13268 ?        Ss   13:47   0:01 /sbin/init splash noprompt noshell automatic-ubiquity
-systemd+     480  0.0  0.3  21588 13100 ?        Ss   13:47   0:00 /usr/lib/systemd/systemd-resolved
-root         754  0.0  0.3 392100 12948 ?        Ssl  13:47   0:00 /usr/sbin/ModemManager
-root        1067  0.0  0.3  20092 11292 ?        Ss   13:49   0:00 /usr/lib/systemd/systemd --user
+root        1248  0.0  1.0 478196 41868 ?        Ssl  23:35   0:00 /usr/libexec/fwupd/fwupd
+root         386  0.0  0.6 288988 27324 ?        SLsl 23:13   0:01 /sbin/multipathd -d -s
+root         711  0.0  0.5 109640 23132 ?        Ssl  23:13   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         334  0.0  0.4  50464 16352 ?        S<s  23:13   0:00 /usr/lib/systemd/systemd-journald
+root         646  0.0  0.3 468972 13576 ?        Ssl  23:13   0:00 /usr/libexec/udisks2/udisksd
+root           1  0.0  0.3  21984 13208 ?        Ss   23:13   0:01 /sbin/init splash noprompt noshell automatic-ubiquity
+systemd+     443  0.0  0.3  21584 12984 ?        Ss   23:13   0:00 /usr/lib/systemd/systemd-resolved
+root         717  0.0  0.3 392032 12844 ?        Ssl  23:13   0:00 /usr/sbin/ModemManager
+dafanr11     943  0.0  0.2  20272 11492 ?        Ss   23:13   0:00 /usr/lib/systemd/systemd --user
 ```
 
 2. Jalankan top dan eksplorasi shortcut-nya:
@@ -890,50 +895,48 @@ top
 
 Output ;  
 ```bash
-root@ubuntuser:/home/yudhis# top
-top - 15:15:22 up  1:28,  2 users,  load average: 0.00, 0.00, 0.00
-Tasks: 136 total,   2 running, 134 sleeping,   0 stopped,   0 zombie
-%Cpu0  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.
-%Cpu1  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.
-%Cpu2  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.
-MiB Mem :   3422.4 total,   2269.6 free,    370.7 used,    944.4 buff/cache
-MiB Swap:      0.0 total,      0.0 free,      0.0 used.   3051.7 avail Mem
+dafanr11@Ubuntu-Server-New:~$ top
+top - 23:56:17 up 42 min,  2 users,  load average: 0.00, 0.01, 0.00
+Tasks: 135 total,   1 running, 134 sleeping,   0 stopped,   0 zombie
+%Cpu0  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+%Cpu1  :  0.0 us,  0.0 sy,  0.0 ni, 98.3 id,  1.0 wa,  0.0 hi,  0.7 si,  0.0 st
+%Cpu2  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+%Cpu3  :  0.0 us,  0.7 sy,  0.0 ni, 99.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3819.3 total,   3379.7 free,    417.6 used,    237.4 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   3401.7 avail Mem
 
-    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+
-      1 root      20   0   22112  13268   9476 S   0.0   0.4   0:01.69
-      2 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     11 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     12 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     13 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     14 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     15 root      20   0       0      0      0 I   0.0   0.0   0:00.00
-     16 root      20   0       0      0      0 S   0.0   0.0   0:00.65
-     17 root      20   0       0      0      0 I   0.0   0.0   0:00.67
-     18 root      rt   0       0      0      0 S   0.0   0.0   0:00.24
-     19 root     -51   0       0      0      0 S   0.0   0.0   0:00.00
-     20 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     22 root     -51   0       0      0      0 S   0.0   0.0   0:00.00
-     23 root      rt   0       0      0      0 S   0.0   0.0   0:00.45
-     24 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-     26 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     27 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     28 root     -51   0       0      0      0 S   0.0   0.0   0:00.00
-     29 root      rt   0       0      0      0 S   0.0   0.0   0:00.33
-     30 root      20   0       0      0      0 S   0.0   0.0   0:00.29
-     36 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-     37 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     38 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     39 root      20   0       0      0      0 S   0.0   0.0   0:00.01
-     40 root      20   0       0      0      0 S   0.0   0.0   0:00.00
-     41 root      20   0       0      0      0 I   0.0   0.0   0:00.54
-     43 root       0 -20       0      0      0 I   0.0   0.0   0:00.00
-     44 root      20   0       0      0      0 S   0.0   0.0   0:00.59
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+    816 root      20   0       0      0      0 I   0.7   0.0   0:01.98 kworker/3:3-events
+   1308 dafanr11  20   0   11936   5952   3724 R   0.3   0.2   0:00.12 top
+      1 root      20   0   21984  13208   9532 S   0.0   0.3   0:01.41 systemd
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.04 kthreadd
+      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_g
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_p
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_
+      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns
+     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri
+     12 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_pe
+     13 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_kthread
+     14 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_rude_kthread
+     15 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_trace_kthread
+     16 root      20   0       0      0      0 S   0.0   0.0   0:00.19 ksoftirqd/0
+     17 root      20   0       0      0      0 I   0.0   0.0   0:00.67 rcu_preempt
+     18 root      rt   0       0      0      0 S   0.0   0.0   0:00.15 migration/0
+     19 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0
+     20 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0
+     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1
+     22 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1
+     23 root      rt   0       0      0      0 S   0.0   0.0   0:00.46 migration/1
+     24 root      20   0       0      0      0 S   0.0   0.0   0:00.20 ksoftirqd/1
+     27 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2
+     28 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/2
+     29 root      rt   0       0      0      0 S   0.0   0.0   0:00.51 migration/2
+     30 root      20   0       0      0      0 S   0.0   0.0   0:00.01 ksoftirqd/2
+     33 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/3
+     34 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/3
+     35 root      rt   0       0      0      0 S   0.0   0.0   0:00.11 migration/3
+     36 root      20   0       0      0      0 S   0.0   0.0   0:00.01 ksoftirqd/3
 ```
 
 3. Instal dan jalankan htop:
@@ -946,13 +949,15 @@ htop
 
 Output ;  
 ```bash
-root@ubuntuser:/home/yudhis# sudo apt install -y htop
+dafanr11@Ubuntu-Server-New:~$ sudo apt install -y htop
+[sudo] password for dafanr11:
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
 htop is already the newest version (3.3.0-4build1).
-0 upgraded, 0 newly installed, 0 to remove and 74 not upgraded.
-root@ubuntuser:/home/yudhis# htop
+htop set to manually installed.
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+dafanr11@Ubuntu-Server-New:~$ htop
 ```
 
 ### Latihan 6.6  
@@ -966,16 +971,60 @@ Jawaban :
 
 1.   
 ```bash
-root@ubuntuser:/home/yudhis# ps aux --sort=-%mem | head -5
+ps aux --sort=-%mem | head -5
 USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root        1110  0.0  1.2 685756 43676 ?        Ssl  13:51   0:03 /usr/libexec/fwupd/fwupd
-root         379  0.0  0.7 288988 27324 ?        SLsl 13:47   0:02 /sbin/multipathd -d -s
-root         731  0.0  0.6 109688 23192 ?        Ssl  13:47   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
-root         323  0.0  0.5  66860 17532 ?        S<s  13:47   0:00 /usr/lib/systemd/systemd-journald
+root        1248  0.0  1.0 478196 41868 ?        Ssl  23:35   0:00 /usr/libexec/fwupd/fwupd
+root         386  0.0  0.6 288988 27324 ?        SLsl 23:13   0:01 /sbin/multipathd -d -s
+root         711  0.0  0.5 109640 23132 ?        Ssl  23:13   0:00 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+root         334  0.0  0.4  50464 16360 ?        S<s  23:13   0:00 /usr/lib/systemd/systemd-journald
 ```
-2. Menampilkan penggunaan setiap core CPU secara terpisah. Berguna untuk melihat beban merata atau tidaknya.
+2. Tampilan berubah dari satu baris rata-rata menjadi rincian per core CPU (%Cpu0, %Cpu1, dst). Informasi ini berguna untuk mendeteksi apakah beban kerja terbagi rata atau ada satu core yang bekerja terlalu berat akibat proses tertentu yang tidak efisien.
+```bash
+dafanr11@Ubuntu-Server-New:~$ top
+top - 00:01:56 up 48 min,  2 users,  load average: 0.00, 0.00, 0.00
+Tasks: 136 total,   1 running, 135 sleeping,   0 stopped,   0 zombie
+%Cpu0  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+%Cpu1  :  0.0 us,  0.0 sy,  0.0 ni, 99.3 id,  0.0 wa,  0.0 hi,  0.7 si,  0.0 st
+%Cpu2  :  0.0 us,  0.0 sy,  0.0 ni, 99.7 id,  0.0 wa,  0.0 hi,  0.3 si,  0.0 st
+%Cpu3  :  0.0 us,  0.0 sy,  0.0 ni,100.0 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+MiB Mem :   3819.3 total,   3295.3 free,    432.8 used,    307.1 buff/cache
+MiB Swap:      0.0 total,      0.0 free,      0.0 used.   3386.5 avail Mem
 
-3.  Akan muncul daftar sinyal yang bisa dikirim (SIGTERM, SIGKILL, SIGHUP, dll). Ini memudahkan tanpa perlu mengingat nomor sinyal.
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+     59 root      20   0       0      0      0 I   0.7   0.0   0:13.50 kworker/1:1-events
+      1 root      20   0   21984  13208   9532 S   0.3   0.3   0:01.50 systemd
+   1241 root      20   0       0      0      0 I   0.3   0.0   0:00.28 kworker/u11:0-events_unbound
+   1287 root      20   0       0      0      0 I   0.3   0.0   0:00.48 kworker/0:3-events
+   1354 dafanr11  20   0   11936   5980   3752 R   0.3   0.2   0:00.26 top
+      2 root      20   0       0      0      0 S   0.0   0.0   0:00.04 kthreadd
+      3 root      20   0       0      0      0 S   0.0   0.0   0:00.00 pool_workqueue_release
+      4 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_g
+      5 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-rcu_p
+      6 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-slub_
+      7 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-netns
+     10 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/0:0H-events_highpri
+     12 root       0 -20       0      0      0 I   0.0   0.0   0:00.00 kworker/R-mm_pe
+     13 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_kthread
+     14 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_rude_kthread
+     15 root      20   0       0      0      0 I   0.0   0.0   0:00.00 rcu_tasks_trace_kthread
+     16 root      20   0       0      0      0 S   0.0   0.0   0:00.23 ksoftirqd/0
+     17 root      20   0       0      0      0 I   0.0   0.0   0:00.79 rcu_preempt
+     18 root      rt   0       0      0      0 S   0.0   0.0   0:00.16 migration/0
+     19 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/0
+     20 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/0
+     21 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/1
+     22 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/1
+     23 root      rt   0       0      0      0 S   0.0   0.0   0:00.46 migration/1
+     24 root      20   0       0      0      0 S   0.0   0.0   0:00.32 ksoftirqd/1
+     27 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/2
+     28 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/2
+     29 root      rt   0       0      0      0 S   0.0   0.0   0:00.52 migration/2
+     30 root      20   0       0      0      0 S   0.0   0.0   0:00.02 ksoftirqd/2
+     33 root      20   0       0      0      0 S   0.0   0.0   0:00.00 cpuhp/3
+     34 root     -51   0       0      0      0 S   0.0   0.0   0:00.00 idle_inject/3
+```
+3. Akan muncul daftar sinyal yang bisa dikirim (SIGTERM, SIGKILL, SIGHUP, dll). Ini memudahkan tanpa perlu mengingat nomor sinyal.
+
 
 
 ## 1.8 Latihan
