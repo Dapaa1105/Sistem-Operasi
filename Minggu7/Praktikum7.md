@@ -759,7 +759,7 @@ Contoh dalam praktik ini:
 ### Langkah 1 : Buat Script Daily Health Check
 Input :
 ```bash
-cd ~/praktikum-os/week07-bash
+cd ~/Sistem-Operasi/Minggu7-bash
 
 cat <<'EOF' > bin/daily-healthcheck
 #!/usr/bin/env bash
@@ -770,7 +770,7 @@ cat <<'EOF' > bin/daily-healthcheck
 # ============================================
 
 # Konfigurasi
-LOG_DIR="$HOME/praktikum-os/week07-bash/logs"
+LOG_DIR="$HOME/Sistem-Operasi/Minggu7-bash/logs"
 TGL=$(date +%F)
 LOG_FILE="$LOG_DIR/healthcheck-$TGL.log"
 
@@ -867,17 +867,16 @@ chmod +x bin/daily-healthcheck
 ```
 Output :
 ```bash
-root@ubuntuser:~/praktikum-os/week07-bash# cat <<'EOF' > bin/daily-healthche
-ck
+dafanr11@Ubuntu-Server-New:~$ cd ~/Sistem-Operasi/Minggu7-bash
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ cat <<'EOF' > bin/daily-healthcheck
 > #!/usr/bin/env bash
->
-# ============================================
+> # ============================================
 # SCRIPT: daily-healthcheck
 # FUNGSI: Health check harian server
 # ============================================
 
 # Konfigurasi
-LOG_DIR="$HOME/praktikum-os/week07-bash/logs"
+LOG_DIR="$HOME/Sistem-Operasi/Minggu7-bash/logs"
 TGL=$(date +%F)
 LOG_FILE="$LOG_DIR/healthcheck-$TGL.log"
 
@@ -895,25 +894,21 @@ show_header() {
 {
     show_header
     echo ""
-
->     # 1. Tanggal dan Waktu
+> # 1. Tanggal dan Waktu
     echo " [1] TANGGAL & WAKTU"
     echo "    $(date '+%Y-%m-%d %H:%M:%S')"
     echo ""
-
->   # 2. Hostname
-    echo " [2] HOSTNAME"
+> # 2. Hostname
+    echo "  [2] HOSTNAME"
     echo "    $(hostname)"
     echo ""
-
->  # 3. User Aktif
+> # 3. User Aktif
     echo " [3] USER AKTIF"
     echo "    User: $(whoami)"
     echo "    Shell: $SHELL"
     echo ""
-
 > # 4. Uptime
-    echo " [4] UPTIME"
+    echo "  [4] UPTIME"
     echo "    $(uptime -p)"
     echo ""
 
@@ -926,20 +921,17 @@ show_header() {
 
     # 6. Penggunaan Filesystem Root
     echo " [6] PENGGUNAAN FILESYSTEM ROOT (/)"
-    df -h / | tail -1 | awk '{print "    Size: " $2 " | Used: " $3 " | Avail
-: " $4 " | Use%: " $5}'
+    df -h / | tail -1 | awk '{print "    Size: " $2 " | Used: " $3 " | Avail: " $4 " | Use%: " $5}'
     echo ""
 
     # 7. 10 Baris Terakhir History (yang relevan dengan pengecekan)
     echo " [7] 10 PERINTAH TERAKHIR (history)"
     echo "    (Perintah yang berhubungan dengan monitoring)"
-    history | tail -20 | grep -E "df|free|uptime|ps|top|htop|systemctl" | ta
-il -10 | while read line; do
+    history | tail -20 | grep -E "df|free|uptime|ps|top|htop|systemctl" | tail -10 | while read line; do
         echo "    $line"
     done
     echo ""
-
->  # 8. Proses yang menggunakan CPU tinggi (top 3)
+> # 8. Proses yang menggunakan CPU tinggi (top 3)
     echo " [8] 3 PROSES DENGAN CPU TERTINGGI"
     ps aux --sort=-%cpu | head -4 | tail -3 | while read line; do
         echo "    $line"
@@ -947,7 +939,7 @@ il -10 | while read line; do
     echo ""
 
     # 9. Cek service penting (opsional)
-    echo "🔧 [9] STATUS SERVICE PENTING"
+    echo " [9] STATUS SERVICE PENTING"
     for service in ssh cron; do
         if systemctl is-active --quiet "$service" 2>/dev/null; then
             echo "     $service: running"
@@ -961,8 +953,7 @@ il -10 | while read line; do
     echo " Health check selesai: $(date '+%Y-%m-%d %H:%M:%S')"
 
 } | tee -a "$LOG_FILE"
-
-# Cek status exit
+> # Cek status exit
 if [ $? -eq 0 ]; then
     echo ""
     echo " Laporan tersimpan di: $LOG_FILE"
@@ -971,7 +962,7 @@ else
     exit 1
 fi
 > EOF
-root@ubuntuser:~/praktikum-os/week07-bash# chmod +x bin/daily-healthcheck
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ chmod +x bin/daily-healthcheck
 ``` 
 
 ### Langkah 2 : Jalankan Script Health Check
@@ -981,38 +972,38 @@ daily-healthcheck
 ```
 Output :
 ```bash
-root@ubuntuser:~/praktikum-os/week07-bash# daily-healthcheck
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ daily-healthcheck
 ==========================================
      DAILY HEALTH CHECK SERVER
 ==========================================
 
  [1] TANGGAL & WAKTU
-    2026-04-11 02:16:02
+    2026-04-15 05:41:42
 
- [2] HOSTNAME
-    ubuntuser
+  [2] HOSTNAME
+    Ubuntu-Server-New
 
  [3] USER AKTIF
-    User: root
+    User: dafanr11
     Shell: /bin/bash
 
- [4] UPTIME
-    up 17 minutes
+  [4] UPTIME
+    up 20 minutes
 
  [5] PENGGUNAAN MEMORY
-    Mem:           3.3Gi       352Mi       2.9Gi       1.0Mi       245Mi       3.0Gi
+    Mem:           3.7Gi       415Mi       3.3Gi       1.0Mi       210Mi       3.3Gi
     Swap:             0B          0B          0B
 
  [6] PENGGUNAAN FILESYSTEM ROOT (/)
-    Size: 50G | Used: 3.5G | Avail: 44G | Use%: 8%
+    Size: 25G | Used: 3.5G | Avail: 20G | Use%: 15%
 
  [7] 10 PERINTAH TERAKHIR (history)
     (Perintah yang berhubungan dengan monitoring)
 
  [8] 3 PROSES DENGAN CPU TERTINGGI
-    root        1193  166  0.1  11016  4632 pts/2    R+   02:16   0:00 ps aux --sort=-%cpu
-    root        1176  5.8  0.0   7340  2160 pts/2    S+   02:16   0:00 bash /root/praktikum-os/week07-bash/bin/daily-healthcheck
-    root        1173  4.5  0.1   7340  3708 pts/2    S+   02:16   0:00 bash /root/praktikum-os/week07-bash/bin/daily-healthcheck
+    dafanr11    1419  175  0.1  10884  4588 pts/0    R+   05:41   0:00 ps aux --sort=-%cpu
+    dafanr11    1420 25.0  0.0   5696  2056 pts/0    S+   05:41   0:00 head -4
+    dafanr11    1402 10.7  0.0   7340  2116 pts/0    S+   05:41   0:00 bash /home/dafanr11/Sistem-Operasi/Minggu7-bash/bin/daily-healthcheck
 
  [9] STATUS SERVICE PENTING
      ssh: running
@@ -1021,9 +1012,9 @@ root@ubuntuser:~/praktikum-os/week07-bash# daily-healthcheck
 ==========================================
      DAILY HEALTH CHECK SERVER
 ==========================================
- Health check selesai: 2026-04-11 02:16:02
+ Health check selesai: 2026-04-15 05:41:43
 
- Laporan tersimpan di: /root/praktikum-os/week07-bash/logs/healthcheck-2026-04-11.log
+ Laporan tersimpan di: /home/dafanr11/Sistem-Operasi/Minggu7-bash/logs/healthcheck-2026-04-15.log
 ``` 
 
 ### Langkah 3 : Uji Script dari Direktori Berbeda
@@ -1033,57 +1024,56 @@ cd /tmp
 
 daily-healthcheck
 
-cd ~/praktikum-os/week07-bash
+cd ~/Sistem-Operasi/Minggu7-bash
 ```
 Output :
 ```bash
-root@ubuntuser:~/praktikum-os/week07-bash# cd /tmp
-
-daily-healthcheck
-
-cd ~/praktikum-os/week07-bash
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ cd /tmp
+dafanr11@Ubuntu-Server-New:/tmp$ daily-healthcheck
 ==========================================
      DAILY HEALTH CHECK SERVER
 ==========================================
 
  [1] TANGGAL & WAKTU
-    2026-04-11 02:19:53
+    2026-04-15 05:42:45
 
-[2] HOSTNAME
-    ubuntuser
+  [2] HOSTNAME
+    Ubuntu-Server-New
 
  [3] USER AKTIF
-    User: root
+    User: dafanr11
     Shell: /bin/bash
 
-[4] UPTIME
+  [4] UPTIME
     up 21 minutes
 
  [5] PENGGUNAAN MEMORY
-    Mem:           3.3Gi       352Mi       2.9Gi       1.0Mi       246Mi       3.0Gi
+    Mem:           3.7Gi       415Mi       3.3Gi       1.0Mi       211Mi       3.3Gi
     Swap:             0B          0B          0B
 
  [6] PENGGUNAAN FILESYSTEM ROOT (/)
-    Size: 50G | Used: 3.5G | Avail: 44G | Use%: 8%
+    Size: 25G | Used: 3.5G | Avail: 20G | Use%: 15%
 
  [7] 10 PERINTAH TERAKHIR (history)
     (Perintah yang berhubungan dengan monitoring)
 
  [8] 3 PROSES DENGAN CPU TERTINGGI
-    root        1233  200  0.1  11016  4624 pts/2    R+   02:19   0:00 ps aux --sort=-%cpu
-    root        1216  9.0  0.0   7340  2120 pts/2    S+   02:19   0:00 bash /root/praktikum-os/week07-bash/bin/daily-healthcheck
-    root        1217  9.0  0.0   5692  1988 pts/2    S+   02:19   0:00 tee -a /root/praktikum-os/week07-bash/logs/healthcheck-2026-04-11.log
+    dafanr11    1446  300  0.1  10884  4604 pts/0    R+   05:42   0:00 ps aux --sort=-%cpu
+    dafanr11    1447  200  0.0   5696  2056 pts/0    S+   05:42   0:00 head -4
+    dafanr11    1448 50.0  0.0   5716  2076 pts/0    S+   05:42   0:00 tail -3
 
-🔧 [9] STATUS SERVICE PENTING
+ [9] STATUS SERVICE PENTING
      ssh: running
      cron: running
 
 ==========================================
      DAILY HEALTH CHECK SERVER
 ==========================================
- Health check selesai: 2026-04-11 02:19:53
+ Health check selesai: 2026-04-15 05:42:46
 
- Laporan tersimpan di: /root/praktikum-os/week07-bash/logs/healthcheck-2026-04-11.log
+ Laporan tersimpan di: /home/dafanr11/Sistem-Operasi/Minggu7-bash/logs/healthcheck-2026-04-15.log
+dafanr11@Ubuntu-Server-New:/tmp$ cd ~/Sistem-Operasi/Minggu7-bash
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$
 ``` 
 
 ### Langkah 4 : Buat Alias untuk Mempermudah
@@ -1093,7 +1083,7 @@ cat <<'EOF' >> ~/.bashrc
 
 # Alias untuk health check
 alias hc='daily-healthcheck'
-alias hclog='tail -20 ~/praktikum-os/week07-bash/logs/healthcheck-*.log | tail -20'
+alias hclog='tail -20 ~/Sistem-Operasi/Minggu7-bash/logs/healthcheck-*.log | tail -20'
 EOF
 
 source ~/.bashrc
@@ -1103,37 +1093,38 @@ hc 2>&1 | head -10
 ```
 Output :
 ```bash
-root@ubuntuser:~/praktikum-os/week07-bash# cat <<'EOF' >> ~/.bashrc
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ cat <<'EOF' >> ~/.bashrc
 > # Alias untuk health check
 alias hc='daily-healthcheck'
-alias hclog='tail -20 ~/praktikum-os/week07-bash/logs/healthcheck-*.log | tail -20'
+alias hclog='tail -20 ~/Sistem-Operasi/Minggu7-bash/logs/healthcheck-*.log | tail -20'
 > EOF
-root@ubuntuser:~/praktikum-os/week07-bash# source ~/.bashrc
-root@ubuntuser:~/praktikum-os/week07-bash# echo "=== UJI ALIAS hc ==="
-hc 2>&1 | head -10
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ source ~/.bashrc
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ echo "=== UJI ALIAS hc ==="
 === UJI ALIAS hc ===
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ hc 2>&1 | head -10
 ==========================================
      DAILY HEALTH CHECK SERVER
 ==========================================
 
  [1] TANGGAL & WAKTU
-    2026-04-11 02:22:36
+    2026-04-15 05:44:12
 
-[2] HOSTNAME
-    ubuntuser
+  [2] HOSTNAME
+    Ubuntu-Server-New
 
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$
 ``` 
 
 ### Langkah 5 : Buat Dokumentasi Script
 Input :
 ```bash
-root@ubuntuser:~/praktikum-os/week07-bash# cat <<'EOF' > healthcheck-documentation.txt
-> ==========================================
+cat <<'EOF' > healthcheck-documentation.txt
+==========================================
  DOKUMENTASI DAILY-HEALTHCHECK
 ==========================================
 
 LOKASI SCRIPT
-   ~/praktikum-os/week07-bash/bin/daily-healthcheck
+   ~/Sistem-Operasi/Minggu7-bash/bin/daily-healthcheck
 
 FUNGSI TIAP BAGIAN
 ------------------------------------------
@@ -1184,20 +1175,19 @@ Penanganan error: Cek exit status dengan $?
 > OUTPUT
 ------------------------------------------
 Terminal    : Menampilkan hasil health check
-Log file    : ~/praktikum-os/week07-bash/logs/healthcheck-YYYY-MM-DD.log
+Log file    : ~/Sistem-Operasi/Minggu7-bash/logs/healthcheck-YYYY-MM-DD.log
 
 ==========================================
 > EOF
 ```
 Output :
 ```bash
-root@ubuntuser:~/praktikum-os/week07-bash# cat healthcheck-documentation.txt
-==========================================
- DOKUMENTASI DAILY-HEALTHCHECK
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ cat healthcheck-documentation.txt
+DOKUMENTASI DAILY-HEALTHCHECK
 ==========================================
 
 LOKASI SCRIPT
-   ~/praktikum-os/week07-bash/bin/daily-healthcheck
+   ~/Sistem-Operasi/Minggu7-bash/bin/daily-healthcheck
 
 FUNGSI TIAP BAGIAN
 ------------------------------------------
@@ -1212,8 +1202,6 @@ FUNGSI TIAP BAGIAN
 3. USER AKTIF
    - Mengetahui siapa yang menjalankan health check
    - Menggunakan environment variable $USER dan $SHELL
-
-
 4. UPTIME
    - Mengetahui sudah berapa lama server berjalan
    - Indikator apakah server baru restart
@@ -1238,8 +1226,7 @@ FUNGSI TIAP BAGIAN
    - Memastikan service critical berjalan
    - ssh: akses remote, cron: job terjadwal
 
-
-ONSEP BASH YANG DIGUNAKAN
+KONSEP BASH YANG DIGUNAKAN
 ------------------------------------------
 Environment Variable: $HOME, $SHELL, $USER
 PATH: Script di bin/ bisa dipanggil dari mana saja
@@ -1250,9 +1237,10 @@ Penanganan error: Cek exit status dengan $?
 OUTPUT
 ------------------------------------------
 Terminal    : Menampilkan hasil health check
-Log file    : ~/praktikum-os/week07-bash/logs/healthcheck-YYYY-MM-DD.log
+Log file    : ~/Sistem-Operasi/Minggu7-bash/logs/healthcheck-YYYY-MM-DD.log
 
 ==========================================
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$
 ``` 
 
 
@@ -1260,7 +1248,7 @@ Log file    : ~/praktikum-os/week07-bash/logs/healthcheck-YYYY-MM-DD.log
 ### Langkah 1 : Buat File Contoh dengan Nama Bervariasi
 Input :
 ```bash
-cd ~/praktikum-os/week07-bash
+cd ~/Sistem-Operasi/Minggu7-bash
 
 mkdir -p tugas4-sample tugas4-backup
 
@@ -1272,7 +1260,7 @@ touch "laporan keuangan april.csv"
 touch "backup server 2026.tar"
 
 touch "config[production].ini"
-touch "data[2026-04-10].json"
+touch "data[2026-04-15].json"
 touch "log_backup_(server).txt"
 
 touch access-log-01.txt
@@ -1297,34 +1285,65 @@ ls -la
 ```
 Output :
 ```bash
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash/tugas4-sample$ echo "=== MEMBUAT FILE CONTOH DENGAN NAMA BERBEDA ==="
+
+touch "laporan keuangan april.csv"
+touch "backup server 2026.tar"
+
+touch "config[production].ini"
+touch "data[2026-04-15].json"
+touch "log_backup_(server).txt"
+
+touch access-log-01.txt
+touch access-log-02.txt
+touch access-log-03.txt
+touch error-log-01.txt
+touch error-log-02.txt
+touch error-log-03.txt
+
+touch "this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log"
+
+touch user_data_2024.csv
+touch user_data_2025.csv
+touch user_data_2026.csv
+
+echo ""
+echo "✅ File contoh telah dibuat"
+echo ""
+
+echo "=== DAFTAR FILE DI tugas4-sample ==="
 === MEMBUAT FILE CONTOH DENGAN NAMA BERBEDA ===
 
 ✅ File contoh telah dibuat
 
 === DAFTAR FILE DI tugas4-sample ===
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash/tugas4-sample$ ls -la
 total 8
-drwxr-xr-x 2 root root 4096 Apr 11 02:39  .
-drwxr-xr-x 9 root root 4096 Apr 11 02:39  ..
--rw-r--r-- 1 root root    0 Apr 11 02:39  access-log-01.txt
--rw-r--r-- 1 root root    0 Apr 11 02:39  access-log-02.txt
--rw-r--r-- 1 root root    0 Apr 11 02:39  access-log-03.txt
--rw-r--r-- 1 root root    0 Apr 11 02:39 'backup server 2026.tar'
--rw-r--r-- 1 root root    0 Apr 11 02:39 'config[production].ini'
--rw-r--r-- 1 root root    0 Apr 11 02:39 'data[2026-04-10].json'
--rw-r--r-- 1 root root    0 Apr 11 02:39  error-log-01.txt
--rw-r--r-- 1 root root    0 Apr 11 02:39  error-log-02.txt
--rw-r--r-- 1 root root    0 Apr 11 02:39  error-log-03.txt
--rw-r--r-- 1 root root    0 Apr 11 02:39 'laporan keuangan april.csv'
--rw-r--r-- 1 root root    0 Apr 11 02:39 'log_backup_(server).txt'
--rw-r--r-- 1 root root    0 Apr 11 02:39  this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log
--rw-r--r-- 1 root root    0 Apr 11 02:39  user_data_2024.csv
--rw-r--r-- 1 root root    0 Apr 11 02:39  user_data_2025.csv
--rw-r--r-- 1 root root    0 Apr 11 02:39  user_data_2026.csv
+drwxrwxr-x  2 dafanr11 dafanr11 4096 Apr 15 06:06  .
+drwxrwxr-x 11 dafanr11 dafanr11 4096 Apr 15 06:04  ..
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56  access-log-01.txt
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56  access-log-02.txt
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56  access-log-03.txt
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56 'backup server 2026.tar'
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56 'config[production].ini'
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 06:06 'data[2026-04-10].json'
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56 'data[2026-04-15].json'
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56  error-log-01.txt
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56  error-log-02.txt
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56  error-log-03.txt
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56 'laporan keuangan april.csv'
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56 'log_backup_(server).txt'
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56  this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56  user_data_2024.csv
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56  user_data_2025.csv
+-rw-rw-r--  1 dafanr11 dafanr11    0 Apr 15 13:56  user_data_2026.csv
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash/tugas4-sample$
 ```   
 
 ### Langkah 2 : Demonstrasi Perbedaan Quoting (Tanpa vs Dengan Quoting)
 Input :
 ```bash
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash/tugas4-sample$ 
 echo "=========================================="
 echo "DEMONSTRASI PERBEDAAN QUOTING"
 echo "=========================================="
@@ -1383,7 +1402,7 @@ Error: Bash memecah jadi 4 argumen terpisah!
 2️. DENGAN QUOTING GANDA (BENAR)
    Perintah: ls -la "laporan keuangan april.csv"
    Hasil:
--rw-r--r-- 1 root root 0 Apr 11 02:39 'laporan keuangan april.csv'
+-rw-rw-r-- 1 dafanr11 dafanr11 0 Apr 15 13:56 'laporan keuangan april.csv'
 Berhasil: Seluruh nama file dianggap 1 argumen!
 
 3️. TANPA QUOTING untuk file dengan tanda kurung
@@ -1401,11 +1420,13 @@ Berhasil dengan double quote
 'config[production].ini'
 Berhasil dengan escape character
 
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash/tugas4-sample$
 ```    
 
 ### Langkah 3 : Preview Wildcard dengan echo (Praktik Aman)
 Input :
 ```bash
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash/tugas4-sample$ 
 echo ""
 echo "=========================================="
 echo "PREVIEW WILDCARD DENGAN echo (PRAKTIK AMAN)"
@@ -1470,60 +1491,58 @@ user_data_2024.csv user_data_2025.csv user_data_2026.csv
 
 Pola 5: *[2026]*
    Preview:
-access-log-01.txt access-log-02.txt access-log-03.txt backup server 2026.tar data[2026-04-10].json error-log-01.txt error-log-02.txt error-log-03.txt user_data_2024.csv user_data_2025.csv user_data_2026.csv
+access-log-01.txt access-log-02.txt access-log-03.txt backup server 2026.tar data[2026-04-10].json data[2026-04-15].json error-log-01.txt error-log-02.txt error-log-03.txt user_data_2024.csv user_data_2025.csv user_data_2026.csv
 Perhatikan: wildcard dengan [ ] bisa error jika tidak ada yang cocok!
 
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash/tugas4-sample$
 ```   
  
 ### Langkah 4 : Salin File ke Backup dengan Nama yang Aman
 Input :
 ```bash
-echo ""
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash/tugas4-sample$ 
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash/tugas4-sample$ echo ""
 echo "=========================================="
 echo "SALIN FILE KE DIREKTORI BACKUP"
 echo "=========================================="
 echo ""
 
-BACKUP_DIR="$HOME/praktikum-os/week07-bash/tugas4-backup"
-SOURCE_DIR="$HOME/praktikum-os/week07-bash/tugas4-sample"
+BACKUP_DIR="$HOME/Sistem-Operasi/Minggu7-bash/tugas4-backup"
+SOURCE_DIR="$HOME/Sistem-Operasi/Minggu7-bash/tugas4-sample"
 
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 BACKUP_SUBDIR="$BACKUP_DIR/backup_$TIMESTAMP"
+
 mkdir -p "$BACKUP_SUBDIR"
 
 echo "Backup akan disimpan di: $BACKUP_SUBDIR"
 echo ""
 
-echo "1️. Menyalin file dengan spasi (menggunakan quote):"
+cd "$SOURCE_DIR" || exit 1
+
+echo "1. Menyalin file dengan spasi (menggunakan quote):"
 cp -v "laporan keuangan april.csv" "$BACKUP_SUBDIR/"
 echo ""
 
-echo "2️. Menyalin file dengan tanda kurung (menggunakan escape):"
+echo "2. Menyalin file dengan tanda kurung (menggunakan escape):"
 cp -v config\[production\].ini "$BACKUP_SUBDIR/"
 echo ""
 
-echo "3️. Menyalin file dengan wildcard (sudah dipreview):"
+echo "3. Menyalin file dengan wildcard (sudah dipreview):"
+echo "Preview:"
+echo access-log-*.txt
 cp -v access-log-*.txt "$BACKUP_SUBDIR/"
 echo ""
 
-echo "4️. Menyalin file dengan nama panjang:"
+echo "4. Menyalin file dengan nama panjang:"
 cp -v "this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log" "$BACKUP_SUBDIR/"
 echo ""
 
-echo "5️. Menyalin semua file .csv:"
+echo "5. Menyalin semua file .csv:"
 cp -v *.csv "$BACKUP_SUBDIR/"
 echo ""
 
-echo "6️. Menyalin file dengan nama berkarakter khusus menggunakan variabel:"
-FILE_SPECIAL="log_backup_(server).txt"
-cp -v "$FILE_SPECIAL" "$BACKUP_SUBDIR/"
-echo ""
-
-echo "Semua file berhasil disalin!"
-echo ""
-
-echo "=== ISI DIREKTORI BACKUP ==="
-ls -la "$BACKUP_SUBDIR/"
+echo "Backup selesai!"R/"======================="usus menggunakan variabel:"
 ```
 Output :
 ```bash
@@ -1531,47 +1550,52 @@ Output :
 SALIN FILE KE DIREKTORI BACKUP
 ==========================================
 
-Backup akan disimpan di: /root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511
+Backup akan disimpan di: /home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457
 
-1️. Menyalin file dengan spasi (menggunakan quote):
-'laporan keuangan april.csv' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/laporan keuangan april.csv'
+1. Menyalin file dengan spasi (menggunakan quote):
+'laporan keuangan april.csv' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/laporan keuangan april.csv'
 
-2️. Menyalin file dengan tanda kurung (menggunakan escape):
-'config[production].ini' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/config[production].ini'
+2. Menyalin file dengan tanda kurung (menggunakan escape):
+'config[production].ini' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/config[production].ini'
 
-3️. Menyalin file dengan wildcard (sudah dipreview):
-'access-log-01.txt' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/access-log-01.txt'
-'access-log-02.txt' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/access-log-02.txt'
-'access-log-03.txt' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/access-log-03.txt'
+3. Menyalin file dengan wildcard (sudah dipreview):
+Preview:
+access-log-01.txt access-log-02.txt access-log-03.txt
+'access-log-01.txt' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/access-log-01.txt'
+'access-log-02.txt' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/access-log-02.txt'
+'access-log-03.txt' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/access-log-03.txt'
 
-4️. Menyalin file dengan nama panjang:
-'this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log'
+4. Menyalin file dengan nama panjang:
+'this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log'
 
-5️. Menyalin semua file .csv:
-'laporan keuangan april.csv' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/laporan keuangan april.csv'
-'user_data_2024.csv' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/user_data_2024.csv'
-'user_data_2025.csv' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/user_data_2025.csv'
-'user_data_2026.csv' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/user_data_2026.csv'
+5. Menyalin semua file .csv:
+'laporan keuangan april.csv' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/laporan keuangan april.csv'
+'user_data_2024.csv' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/user_data_2024.csv'
+'user_data_2025.csv' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/user_data_2025.csv'
+'user_data_2026.csv' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/user_data_2026.csv'
 
-6️. Menyalin file dengan nama berkarakter khusus menggunakan variabel:
-'log_backup_(server).txt' -> '/root/praktikum-os/week07-bash/tugas4-backup/backup_20260411_024511/log_backup_(server).txt'
+6. Menyalin file dengan nama berkarakter khusus menggunakan variabel:
+'log_backup_(server).txt' -> '/home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_20260415_140457/log_backup_(server).txt'
 
-Semua file berhasil disalin!
+==========================================
+ISI FOLDER BACKUP
+==========================================
+total 8.0K
+drwxrwxr-x 2 dafanr11 dafanr11 4.0K Apr 15 14:04  .
+drwxrwxr-x 6 dafanr11 dafanr11 4.0K Apr 15 14:04  ..
+-rw-rw-r-- 1 dafanr11 dafanr11    0 Apr 15 14:04  access-log-01.txt
+-rw-rw-r-- 1 dafanr11 dafanr11    0 Apr 15 14:04  access-log-02.txt
+-rw-rw-r-- 1 dafanr11 dafanr11    0 Apr 15 14:04  access-log-03.txt
+-rw-rw-r-- 1 dafanr11 dafanr11    0 Apr 15 14:04 'config[production].ini'
+-rw-rw-r-- 1 dafanr11 dafanr11    0 Apr 15 14:04 'laporan keuangan april.csv'
+-rw-rw-r-- 1 dafanr11 dafanr11    0 Apr 15 14:04 'log_backup_(server).txt'
+-rw-rw-r-- 1 dafanr11 dafanr11    0 Apr 15 14:04  this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log
+-rw-rw-r-- 1 dafanr11 dafanr11    0 Apr 15 14:04  user_data_2024.csv
+-rw-rw-r-- 1 dafanr11 dafanr11    0 Apr 15 14:04  user_data_2025.csv
+-rw-rw-r-- 1 dafanr11 dafanr11    0 Apr 15 14:04  user_data_2026.csv
 
-=== ISI DIREKTORI BACKUP ===
-total 8
-drwxr-xr-x 2 root root 4096 Apr 11 02:45  .
-drwxr-xr-x 3 root root 4096 Apr 11 02:45  ..
--rw-r--r-- 1 root root    0 Apr 11 02:45  access-log-01.txt
--rw-r--r-- 1 root root    0 Apr 11 02:45  access-log-02.txt
--rw-r--r-- 1 root root    0 Apr 11 02:45  access-log-03.txt
--rw-r--r-- 1 root root    0 Apr 11 02:45 'config[production].ini'
--rw-r--r-- 1 root root    0 Apr 11 02:45 'laporan keuangan april.csv'
--rw-r--r-- 1 root root    0 Apr 11 02:45 'log_backup_(server).txt'
--rw-r--r-- 1 root root    0 Apr 11 02:45  this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log
--rw-r--r-- 1 root root    0 Apr 11 02:45  user_data_2024.csv
--rw-r--r-- 1 root root    0 Apr 11 02:45  user_data_2025.csv
--rw-r--r-- 1 root root    0 Apr 11 02:45  user_data_2026.csv
+Backup selesai!
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash/tugas4-sample$
 ```   
 
 ### Langkah 5 : Buat Arsip tar.gz dari Hasil Backup
@@ -1583,13 +1607,16 @@ echo "MEMBUAT ARSIP TAR.GZ"
 echo "=========================================="
 echo ""
 
-cd "$BACKUP_DIR"
+BACKUP_DIR="$HOME/Sistem-Operasi/Minggu7-bash/tugas4-backup"
 
-ARCHIVE_NAME="backup_archive_$TIMESTAMP.tar.gz"
+cd "$BACKUP_DIR" || exit 1
+
+ARCHIVE_NAME="backup_archive_$(date +%Y%m%d_%H%M%S).tar.gz"
 ARCHIVE_PATH="$BACKUP_DIR/$ARCHIVE_NAME"
 
 echo "Membuat arsip: $ARCHIVE_NAME"
-tar -czf "$ARCHIVE_PATH" "backup_$TIMESTAMP/"
+
+tar -czf "$ARCHIVE_PATH" backup_*
 
 if [ $? -eq 0 ]; then
     echo "Arsip berhasil dibuat!"
@@ -1603,7 +1630,7 @@ else
     echo "Gagal membuat arsip"
 fi
 
-cd ~/praktikum-os/week07-bash
+cd ~/Sistem-Operasi/Minggu7-bash
 ```
 Output :
 ```bash
@@ -1611,36 +1638,35 @@ Output :
 MEMBUAT ARSIP TAR.GZ
 ==========================================
 
-Membuat arsip: backup_archive_20260411_024511.tar.gz
+Membuat arsip: backup_archive_20260415_140837.tar.gz
 Arsip berhasil dibuat!
 
 === INFORMASI ARSIP ===
--rw-r--r-- 1 root root 376 Apr 11 02:47 /root/praktikum-os/week07-bash/tugas4-backup/backup_archive_20260411_024511.tar.gz
+-rw-rw-r-- 1 dafanr11 dafanr11 803 Apr 15 14:08 /home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_archive_20260415_140837.tar.gz
 
 === ISI ARSIP (daftar file) ===
-backup_20260411_024511/
-backup_20260411_024511/user_data_2025.csv
-backup_20260411_024511/this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log
-backup_20260411_024511/user_data_2024.csv
-backup_20260411_024511/access-log-01.txt
-backup_20260411_024511/access-log-03.txt
-backup_20260411_024511/laporan keuangan april.csv
-backup_20260411_024511/user_data_2026.csv
-backup_20260411_024511/config[production].ini
-backup_20260411_024511/access-log-02.txt
-backup_20260411_024511/log_backup_(server).txt
+backup_20260415_061401/
+backup_20260415_061401/access-log-02.txt
+backup_20260415_061401/log_backup_(server).txt
+backup_20260415_061401/access-log-03.txt
+backup_20260415_061401/config[production].ini
+backup_20260415_061401/user_data_2025.csv
+backup_20260415_061401/user_data_2026.csv
+backup_20260415_061401/user_data_2024.csv
+backup_20260415_061401/access-log-01.txt
+backup_20260415_061401/laporan keuangan april.csv
+backup_20260415_061401/this_is_a_very_long_filename_for_testing_wildcard_pattern_matching.log
+backup_20260415_061533/
+backup_20260415_061533/access-log-02.txt
+backup_20260415_061533/log_backup_(server).txt
+backup_20260415_061533/access-log-03.txt
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$
 ```   
 
 ### Langkah 6 : Simpan Riwayat Perintah ke File
 Input :
 ```bash
-echo ""
-echo "=========================================="
-echo "MENYIMPAN RIWAYAT PERINTAH"
-echo "=========================================="
-echo ""
-
-cat <<EOF > riwayat-arsip.txt
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ cat <<EOF > riwayat-arsip.txt
 ==========================================
 RIWAYAT PERINTAH TUGAS PRAKTIKUM 4
 ==========================================
@@ -1662,10 +1688,10 @@ PERINTAH-PERINTAH YANG DIGUNAKAN
 2. DEMONSTRASI QUOTING:
    # Tanpa quote (SALAH)
    ls -la laporan keuangan april.csv
-   
+
    # Dengan quote (BENAR)
    ls -la "laporan keuangan april.csv"
-   
+
    # Dengan escape
    ls config\[production\].ini
 
@@ -1675,43 +1701,24 @@ PERINTAH-PERINTAH YANG DIGUNAKAN
    echo user_data_202?.csv
 
 4. COPY FILE DENGAN QUOTING:
-   cp -v "laporan keuangan april.csv" "\$BACKUP_DIR/"
-   cp -v config\[production\].ini "\$BACKUP_DIR/"
+==========================================ujuanuan"ckup_\$TIMESTAMP/"
 
-5. COPY DENGAN WILDCARD:
-   cp -v access-log-*.txt "\$BACKUP_DIR/"
-
-6. MEMBUAT ARSIP TAR.GZ:
-   tar -czf "backup_archive_\$TIMESTAMP.tar.gz" "backup_\$TIMESTAMP/"
-
-7. MEMERIKSA ISI ARSIP:
-   tar -tzf backup_archive_*.tar.gz
-
-------------------------------------------
-PENTING: SELALU GUNAKAN QUOTING UNTUK VARIABEL
-YANG BERISI PATH ATAU NAMA FILE!
-------------------------------------------
-Contoh yang benar: cp "\$file_asli" "\$file_tujuan"
-Contoh yang salah: cp \$file_asli \$file_tujuan
-
-==========================================
-EOF
-
-cat riwayat-arsip.txt
-```
-Output :
-```bash
 ==========================================
 MENYIMPAN RIWAYAT PERINTAH
 ==========================================
 
+> EOF
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ cat riwayat-arsip.txt
+```
+Output :
+```bash
 ==========================================
 RIWAYAT PERINTAH TUGAS PRAKTIKUM 4
 ==========================================
-Tanggal: 2026-04-11 02:49:58
-User: root
-Hostname: ubuntuser
-Workspace: /root/praktikum-os/week07-bash
+Tanggal: 2026-04-15 14:11:56
+User: dafanr11
+Hostname: Ubuntu-Server-New
+Workspace: /home/dafanr11/Sistem-Operasi/Minggu7-bash
 
 ------------------------------------------
 PERINTAH-PERINTAH YANG DIGUNAKAN
@@ -1759,18 +1766,13 @@ Contoh yang benar: cp "$file_asli" "$file_tujuan"
 Contoh yang salah: cp $file_asli $file_tujuan
 
 ==========================================
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$
 ```    
 
 ### Langkah 7 : Refleksi Pentingnya Quoting
 Input :
 ```bash
-echo ""
-echo "=========================================="
-echo "REFLEKSI PENTINGNYA QUOTING DI BASH"
-echo "=========================================="
-echo ""
-
-cat <<'EOF' > refleksi-quoting.txt
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ cat <<'EOF' > refleksi-quoting.txt
 ==========================================
 REFLEKSI: MENGAPA QUOTING SANGAT PENTING?
 ==========================================
@@ -1810,27 +1812,13 @@ SELALU gunakan double quote untuk variabel:
    echo "User: $USER"
 
 Gunakan single quote untuk teks literal:
-   echo 'Karakter $special @tidak &diekspansi'
-
-Gunakan backslash untuk escape karakter tunggal:
-   cp file\ dengan\ spasi.txt backup/
-
-PREVIEW wildcard dengan echo sebelum perintah berbahaya:
-   echo rm *.log  (lihat dulu filenya)
-   rm *.log      (langsung hapus tanpa lihat)
-
-==========================================
-EOF
-
-cat refleksi-quoting.txt
+==========================================at) berbahaya:
+> EOF
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ cat refleksi-quoting.txt
 ```
 Output :
 ```bash
 ==========================================
-REFLEKSI PENTINGNYA QUOTING DI BASH
-==========================================
-
-==========================================
 REFLEKSI: MENGAPA QUOTING SANGAT PENTING?
 ==========================================
 
@@ -1879,11 +1867,13 @@ PREVIEW wildcard dengan echo sebelum perintah berbahaya:
    rm *.log      (langsung hapus tanpa lihat)
 
 ==========================================
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$
 ```   
 
 ### Langkah 8 : Tampilkan Ringkasan Tugas 4
 Input :
 ```bash
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$ 
 echo ""
 echo "=========================================="
 echo "RINGKASAN TUGAS PRAKTIKUM 4"
@@ -1891,24 +1881,24 @@ echo "=========================================="
 echo ""
 
 echo "DAFTAR FILE AWAL (di tugas4-sample):"
-ls -1 tugas4-sample/ | head -10
+ls -1 tugas4-sample/ 2>/dev/null | head -10
 echo "   ... dan seterusnya"
 echo ""
 
 echo "DAFTAR FILE HASIL BACKUP:"
-ls -1 "$BACKUP_SUBDIR/"
+ls -1 "$BACKUP_SUBDIR/" 2>/dev/null
 echo ""
 
 echo "FILE ARSIP TAR.GZ:"
-ls -lh "$BACKUP_DIR"/*.tar.gz
+ls -lh "$BACKUP_DIR"/*.tar.gz 2>/dev/null
 echo ""
 
 echo "FILE RIWAYAT PERINTAH:"
-ls -lh riwayat-arsip.txt
+ls -lh riwayat-arsip.txt 2>/dev/null
 echo ""
 
 echo "REFLEKSI QUOTING:"
-ls -lh refleksi-quoting.txt
+ls -lh refleksi-quoting.txt 2>/dev/null
 echo ""
 
 echo "=========================================="
@@ -1928,10 +1918,10 @@ access-log-03.txt
 backup server 2026.tar
 config[production].ini
 data[2026-04-10].json
+data[2026-04-15].json
 error-log-01.txt
 error-log-02.txt
 error-log-03.txt
-laporan keuangan april.csv
    ... dan seterusnya
 
 DAFTAR FILE HASIL BACKUP:
@@ -1947,15 +1937,16 @@ user_data_2025.csv
 user_data_2026.csv
 
 FILE ARSIP TAR.GZ:
--rw-r--r-- 1 root root 376 Apr 11 02:47 /root/praktikum-os/week07-bash/tugas4-backup/backup_archive_20260411_024511.tar.gz
+-rw-rw-r-- 1 dafanr11 dafanr11 803 Apr 15 14:08 /home/dafanr11/Sistem-Operasi/Minggu7-bash/tugas4-backup/backup_archive_20260415_140837.tar.gz
 
 FILE RIWAYAT PERINTAH:
--rw-r--r-- 1 root root 1.5K Apr 11 02:49 riwayat-arsip.txt
+-rw-rw-r-- 1 dafanr11 dafanr11 1.5K Apr 15 14:11 riwayat-arsip.txt
 
 REFLEKSI QUOTING:
--rw-r--r-- 1 root root 1.8K Apr 11 02:53 refleksi-quoting.txt
+-rw-rw-r-- 1 dafanr11 dafanr11 1.8K Apr 15 14:14 refleksi-quoting.txt
 
 ==========================================
 TUGAS 4 SELESAI!
 ==========================================
+dafanr11@Ubuntu-Server-New:~/Sistem-Operasi/Minggu7-bash$
 ```
